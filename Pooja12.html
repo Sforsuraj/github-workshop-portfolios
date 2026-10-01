@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pooja Shankar | AR/VR Creator & Web Designer</title>
+<meta name="description" content="Portfolio of Pooja Shankar, AR/VR content creator, website designer and CSBS student at Sri Sairam Engineering College.">
+<meta name="theme-color" content="#0f0709">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=Josefin+Slab:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+
+<style>
+:root{
+  --ink:#0f0709;
+  --wine:#2a0d14;
+  --coral:#f0555c;
+  --blush:#ffb9ae;
+  --bone:#fff4f1;
+  --line:rgba(255,185,174,.22);
+  --sans:'Josefin Sans','Segoe UI',system-ui,sans-serif;
+  --slab:'Josefin Slab',Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;color-scheme:dark}
+body{background:var(--ink);color:var(--bone);font-family:var(--sans);font-weight:400;line-height:1.65;overflow-x:hidden}
+::selection{background:var(--coral);color:var(--ink)}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--blush);outline-offset:3px}
+
+/* 3D background (smoke + wireframe) */
+#gl{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block}
+.glow{position:fixed;width:420px;height:420px;border-radius:50%;pointer-events:none;z-index:1;
+  background:radial-gradient(circle,rgba(240,85,92,.22),transparent 65%);
+  transform:translate(-50%,-50%);left:-999px;top:-999px;mix-blend-mode:screen}
+main,header,footer{position:relative;z-index:2}
+
+/* Navigation */
+nav{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:center;gap:clamp(18px,5vw,84px);
+  padding:22px 20px;padding-top:max(22px,env(safe-area-inset-top));transition:background .4s,padding .4s}
+nav.solid{background:rgba(15,7,9,.78);backdrop-filter:blur(12px);padding-top:max(12px,env(safe-area-inset-top));padding-bottom:12px}
+nav a.l{font-weight:600;letter-spacing:.14em;font-size:.95rem;text-transform:uppercase;position:relative;padding:4px 0}
+nav a.l::after{content:"";position:absolute;left:0;bottom:-2px;height:2px;width:100%;background:var(--coral);transform:scaleX(0);transform-origin:left;transition:transform .35s}
+nav a.l:hover::after,nav a.l.on::after{transform:scaleX(1)}
+.logo{display:grid;place-items:center;width:44px;height:44px}
+.logo svg{width:40px;height:40px;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.logo:hover svg{transform:rotate(180deg)}
+.burger{display:none;background:none;border:1px solid var(--line);color:var(--bone);width:42px;height:42px;border-radius:50%;cursor:pointer;font-size:1.1rem}
+
+/* Side rails */
+.dots{position:fixed;left:26px;top:50%;transform:translateY(-50%);z-index:15;display:flex;flex-direction:column;gap:14px}
+.dots a{width:7px;height:7px;border-radius:50%;background:rgba(255,244,241,.45);transition:.3s;position:relative}
+.dots a.on{background:var(--coral);transform:scale(1.7);box-shadow:0 0 0 4px rgba(240,85,92,.25)}
+.dots a span{position:absolute;left:18px;top:50%;transform:translateY(-50%);font-size:.78rem;letter-spacing:.1em;opacity:0;pointer-events:none;transition:.3s;white-space:nowrap}
+.dots a:hover span{opacity:1}
+.social{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:15;border:1px solid var(--line);border-right:0;background:rgba(15,7,9,.55);backdrop-filter:blur(6px)}
+.social a{display:grid;place-items:center;width:46px;height:46px;font-weight:600;font-size:.95rem;border-bottom:1px solid var(--line);transition:.3s}
+.social a:last-child{border-bottom:0}
+.social a:hover{background:var(--coral);color:var(--ink)}
+
+/* Hero */
+.hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 90px}
+.title{font-weight:700;font-size:clamp(2.6rem,9vw,6.4rem);letter-spacing:.06em;line-height:1.05;text-transform:uppercase;text-shadow:0 0 40px rgba(240,85,92,.45)}
+.title span{display:inline-block;opacity:0;transform:translateY(40px) rotateX(-70deg);animation:rise .9s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+.tag{font-family:var(--slab);font-style:italic;font-size:clamp(1.15rem,2.6vw,1.7rem);color:var(--blush);margin-top:18px;opacity:0;animation:rise 1s 1.3s forwards}
+.role{margin-top:12px;font-size:clamp(.95rem,2vw,1.15rem);letter-spacing:.08em;opacity:0;animation:rise 1s 1.6s forwards;min-height:1.7em}
+.role b{color:var(--coral);font-weight:600}
+.caret{display:inline-block;width:2px;height:1em;background:var(--coral);vertical-align:-2px;margin-left:3px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.cta{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:34px;opacity:0;animation:rise 1s 1.9s forwards}
+.btn{display:inline-block;padding:13px 28px;border:1px solid var(--coral);font-weight:600;letter-spacing:.12em;font-size:.88rem;text-transform:uppercase;transition:.3s;background:transparent;color:var(--bone);cursor:pointer;font-family:inherit}
+.btn.fill{background:var(--coral);color:var(--ink)}
+.btn:hover{background:var(--bone);color:var(--ink);border-color:var(--bone);transform:translateY(-2px)}
+.down{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);animation:bob 1.8s ease-in-out infinite}
+.down svg{width:34px;height:34px}
+@keyframes bob{50%{transform:translate(-50%,10px)}}
+
+/* Sections */
+section.s{padding:110px clamp(24px,8vw,120px);background:linear-gradient(180deg,rgba(15,7,9,.82),rgba(15,7,9,.9));border-top:1px solid var(--line)}
+.wrap{max-width:1080px;margin:auto}
+h2{font-weight:700;font-size:clamp(1.8rem,4.4vw,3rem);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}
+h2::after{content:"";display:block;width:64px;height:3px;background:var(--coral);margin-top:14px}
+.lead{max-width:62ch;color:rgba(255,244,241,.82);font-size:1.12rem;margin:26px 0 8px}
+.about{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+.facts{border-left:2px solid var(--coral);padding-left:26px;display:grid;gap:18px}
+.facts div b{display:block;font-size:1.35rem;font-weight:600}
+.facts div span{color:var(--blush);font-size:.95rem}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px;margin-top:40px}
+.card{position:relative;padding:30px 26px;border:1px solid var(--line);background:linear-gradient(160deg,rgba(240,85,92,.12),rgba(42,13,20,.55));
+  transform:perspective(800px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .15s ease-out,border-color .3s}
+.card:hover{border-color:var(--coral)}
+.card h3{font-size:1.25rem;font-weight:600;letter-spacing:.04em;margin-bottom:8px}
+.card p{color:rgba(255,244,241,.8);font-size:1rem}
+.card .ic{font-size:1.7rem;margin-bottom:10px;display:block;color:var(--coral)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.chips i{font-style:normal;font-size:.8rem;padding:3px 11px;border:1px solid var(--line);color:var(--blush);border-radius:99px}
+.card a.more{display:inline-block;margin-top:16px;font-weight:600;color:var(--coral);border-bottom:1px solid transparent}
+.card a.more:hover{border-color:var(--coral)}
+
+.skills{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-top:30px}
+#sphere{position:relative;width:min(420px,86vw);height:min(420px,86vw);margin:auto;touch-action:pan-y;cursor:grab}
+.tagw{position:absolute;left:50%;top:50%;white-space:nowrap;font-weight:600;color:var(--blush);will-change:transform;font-size:1.05rem;pointer-events:none}
+.bars{display:grid;gap:18px}
+.bar label{display:flex;justify-content:space-between;font-weight:600;margin-bottom:6px}
+.bar div{height:6px;background:rgba(255,244,241,.12)}
+.bar div i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--coral),var(--blush));transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+
+.timeline{margin-top:40px;border-left:2px solid var(--line);padding-left:30px;display:grid;gap:34px}
+.timeline article{position:relative}
+.timeline article::before{content:"";position:absolute;left:-39px;top:8px;width:14px;height:14px;border-radius:50%;background:var(--coral);box-shadow:0 0 0 5px rgba(240,85,92,.2)}
+.timeline h3{font-size:1.3rem;font-weight:600}
+.timeline small{color:var(--blush);font-size:.95rem}
+.timeline p{margin-top:6px;color:rgba(255,244,241,.8);max-width:60ch}
+
+.lab{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;margin-top:34px}
+model-viewer{width:100%;height:min(460px,70vw);background:radial-gradient(circle at 50% 40%,rgba(240,85,92,.28),rgba(15,7,9,.6) 70%);border:1px solid var(--line);--poster-color:transparent}
+model-viewer .arbtn{position:absolute;bottom:14px;right:14px}
+
+form{display:grid;gap:16px;margin-top:34px;max-width:560px}
+input,textarea{width:100%;padding:14px 16px;background:rgba(255,244,241,.06);border:1px solid var(--line);color:var(--bone);font:inherit}
+input:focus,textarea:focus{outline:none;border-color:var(--coral)}
+footer{padding:36px 24px calc(36px + env(safe-area-inset-bottom));text-align:center;color:var(--blush);background:var(--ink);border-top:1px solid var(--line);font-size:.95rem}
+
+@media(max-width:860px){
+  .about,.skills,.lab{grid-template-columns:1fr}
+  .dots{display:none}
+  .burger{display:block;position:fixed;right:16px;top:max(14px,env(safe-area-inset-top))}
+  nav{justify-content:flex-start;padding-left:16px}
+  nav a.l{display:none}
+  nav.open{background:rgba(15,7,9,.96);flex-direction:column;align-items:center;height:100svh;justify-content:center;gap:26px}
+  nav.open a.l{display:block;font-size:1.3rem}
+  .social{top:auto;bottom:16px;transform:none;display:flex;border-right:1px solid var(--line)}
+  .social a{border-bottom:0;border-right:1px solid var(--line);width:42px;height:42px}
+  .social a:last-child{border-right:0}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+
+<body>
+<canvas id="gl" aria-hidden="true"></canvas>
+<div class="glow" id="glow" aria-hidden="true"></div>
+
+<nav id="nav">
+  <a class="l" href="#about">About Me</a>
+  <a class="l" href="#what">What I Do</a>
+  <a class="logo" href="#home" aria-label="Home">
+    <svg viewBox="0 0 48 48" fill="none" stroke="#fff4f1" stroke-width="1.6"><circle cx="24" cy="17" r="11"/><circle cx="16.5" cy="29.5" r="11"/><circle cx="31.5" cy="29.5" r="11"/></svg>
+  </a>
+  <a class="l" href="#exp">My Experience</a>
+  <a class="l" href="#work">My Work</a>
+  <a class="l" href="#lab">AR/VR Lab</a>
+  <a class="l" href="#contact">Contact</a>
+</nav>
+<button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">&#9776;</button>
+
+<div class="dots" id="dots">
+  <a href="#home" aria-label="Home"><span>Home</span></a>
+  <a href="#about" aria-label="About"><span>About</span></a>
+  <a href="#what" aria-label="What I do"><span>What I do</span></a>
+  <a href="#exp" aria-label="Experience"><span>Experience</span></a>
+  <a href="#work" aria-label="Work"><span>Work</span></a>
+  <a href="#lab" aria-label="AR/VR Lab"><span>AR/VR Lab</span></a>
+  <a href="#contact" aria-label="Contact"><span>Contact</span></a>
+</div>
+
+<!-- EDIT: put your real profile links here -->
+<div class="social">
+  <a href="https://github.com/YOUR-USERNAME" target="_blank" rel="noopener" aria-label="GitHub">GH</a>
+  <a href="https://www.linkedin.com/in/YOUR-PROFILE" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+  <a href="https://www.behance.net/YOUR-PROFILE" target="_blank" rel="noopener" aria-label="Behance">B&euml;</a>
+</div>
+
+<header class="hero" id="home">
+  <h1 class="title" id="title" aria-label="Pooja Shankar">Pooja Shankar</h1>
+  <p class="tag">I build worlds you can step into.</p>
+  <p class="role">I am an <b id="typed"></b><span class="caret"></span></p>
+  <div class="cta">
+    <a class="btn fill" href="#work">See my work</a>
+    <a class="btn" href="#contact">Hire me</a>
+  </div>
+  <a class="down" href="#about" aria-label="Scroll down">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#fff4f1" stroke-width="1.6"><path d="M4 8l8 8 8-8"/></svg>
+  </a>
+</header>
+
+<main>
+  <section class="s" id="about">
+    <div class="wrap about">
+      <div>
+        <h2>About me</h2>
+        <p class="lead">I'm Pooja, a Computer Science and Business Systems student at Sri Sairam Engineering College. I'm a confident communicator and a creative thinker who turns ideas into immersive AR/VR content and polished websites.</p>
+        <p class="lead">I freelance on AR/VR projects, take part in hackathons, and I'm growing my skills in machine learning, with quantum computing as a long-term goal.</p>
+      </div>
+      <div class="facts">
+        <div><b>Sri Sairam Engineering College</b><span>CSBS, Computer Science and Business Systems</span></div>
+        <div><b>Freelance AR/VR creator</b><span>Immersive content for real clients</span></div>
+        <div><b>Hackathon builder</b><span>VMEDITHON 3.0 at VIT Chennai</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="s" id="what">
+    <div class="wrap">
+      <h2>What I do</h2>
+      <p class="lead">Move your mouse over the cards, and over the sphere below. Everything here reacts.</p>
+      <div class="grid">
+        <div class="card tilt"><span class="ic">&#9678;</span><h3>AR/VR content</h3><p>Freelance 3D and immersive experiences that people can view on a phone or a headset.</p></div>
+        <div class="card tilt"><span class="ic">&#9635;</span><h3>Website design</h3><p>Clean, fast, responsive sites with motion that guides attention instead of distracting from it.</p></div>
+        <div class="card tilt"><span class="ic">&#9650;</span><h3>Communication</h3><p>Clear presenting and storytelling, so a project is understood in the first minute.</p></div>
+        <div class="card tilt"><span class="ic">&#10022;</span><h3>Hackathon projects</h3><p>Build, pitch, iterate. I design the idea, the interface and the story together.</p></div>
+      </div>
+
+      <div class="skills">
+        <div id="sphere" aria-label="Rotating 3D sphere of my skills"></div>
+        <div class="bars" id="bars">
+          <div class="bar"><label>AR/VR content <span>90%</span></label><div><i data-w="90"></i></div></div>
+          <div class="bar"><label>Website design <span>88%</span></label><div><i data-w="88"></i></div></div>
+          <div class="bar"><label>Communication <span>95%</span></label><div><i data-w="95"></i></div></div>
+          <div class="bar"><label>Freelancing <span>85%</span></label><div><i data-w="85"></i></div></div>
+          <div class="bar"><label>Python and ML (learning) <span>30%</span></label><div><i data-w="30"></i></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="s" id="exp">
+    <div class="wrap">
+      <h2>My experience</h2>
+      <div class="timeline">
+        <!-- EDIT: add dates, client names and links for each entry -->
+        <article>
+          <h3>Freelance AR/VR content creator</h3>
+          <small>Independent, ongoing</small>
+          <p>Design and deliver AR/VR content for clients, from concept to a shareable experience.</p>
+        </article>
+        <article>
+          <h3>Website designer</h3>
+          <small>Freelance and personal projects</small>
+          <p>Design responsive websites with strong visual identity and interactive motion.</p>
+        </article>
+        <article>
+          <h3>Hackathon participant</h3>
+          <small>VMEDITHON 3.0, VIT Chennai</small>
+          <p>Competed with Team INNOVIX on NexCare and pitched it to a review panel.</p>
+        </article>
+        <article>
+          <h3>B.Tech CSBS student</h3>
+          <small>Sri Sairam Engineering College, 2nd year</small>
+          <p>Building a foundation in programming, machine learning and business systems.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="s" id="work">
+    <div class="wrap">
+      <h2>My work</h2>
+      <div class="grid">
+        <div class="card tilt">
+          <h3>EcoTwin</h3>
+          <p>Simulate. Learn. Sustain. A digital twin of a campus where you change room settings, like AC temperature, and see the carbon and energy impact live.</p>
+          <div class="chips"><i>Digital twin</i><i>Simulation</i><i>Green education</i></div>
+          <a class="more" href="#" target="_blank" rel="noopener">View project</a>
+        </div>
+        <div class="card tilt">
+          <h3>NexCare</h3>
+          <p>A real-time smart hospital availability and recommendation system, built with Team INNOVIX for VMEDITHON 3.0.</p>
+          <div class="chips"><i>Healthcare</i><i>Real-time</i><i>Open Innovation</i></div>
+          <a class="more" href="#" target="_blank" rel="noopener">View project</a>
+        </div>
+        <div class="card tilt">
+          <h3>AR/VR client work</h3>
+          <p>Immersive 3D content created for freelance clients. Add your best demo links and screenshots here.</p>
+          <div class="chips"><i>AR</i><i>VR</i><i>3D</i></div>
+          <a class="more" href="#lab">Try the AR demo</a>
+        </div>
+        <div class="card tilt">
+          <h3>This portfolio</h3>
+          <p>Designed and coded by me, with a live 3D smoke scene, a skills sphere and an AR viewer.</p>
+          <div class="chips"><i>HTML</i><i>CSS</i><i>Three.js</i></div>
+          <a class="more" href="https://github.com/YOUR-USERNAME/portfolio" target="_blank" rel="noopener">See the code</a>
+        </div>
+      </div>
+
+      <h2 style="margin-top:90px">Recognition</h2>
+      <div class="grid">
+        <!-- EDIT: replace or add your real awards, certificates and mentions -->
+        <div class="card tilt"><h3>VMEDITHON 3.0</h3><p>Participant, Open Innovation track, VIT Chennai, September 2026.</p></div>
+        <div class="card tilt"><h3>Green and Sustainable Education hackathon</h3><p>Built EcoTwin within a 5-hour build window.</p></div>
+        <div class="card tilt"><h3>Your next award</h3><p>Add certificates, wins and mentions here as they come in.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="s" id="lab">
+    <div class="wrap">
+      <h2>AR/VR lab</h2>
+      <p class="lead">Drag to rotate and pinch to zoom. On a phone, tap the AR button to place this model in your room.</p>
+      <div class="lab">
+        <!-- EDIT: replace src with your own .glb model file (for example models/my-model.glb) -->
+        <model-viewer src="https://modelviewer.dev/shared-assets/models/Astronaut.glb" alt="Interactive 3D model"
+          ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate shadow-intensity="1" touch-action="pan-y">
+          <button slot="ar-button" class="btn fill arbtn">View in AR</button>
+        </model-viewer>
+        <div>
+          <h3 style="font-size:1.5rem;font-weight:600">Experience it, don't just read about it</h3>
+          <p class="lead" style="margin-top:12px">This is the kind of content I make for clients: 3D objects people can inspect on the web and place in their space with their own camera.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="s" id="contact">
+    <div class="wrap">
+      <h2>Let's work together</h2>
+      <p class="lead">Need an AR/VR experience or a standout website? Tell me about it.</p>
+      <!-- EDIT: create a free form at formspree.io and replace YOUR_FORM_ID, or keep it as an email link -->
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <input name="name" placeholder="Your name" required aria-label="Your name">
+        <input name="email" type="email" placeholder="Your email" required aria-label="Your email">
+        <textarea name="message" rows="5" placeholder="What would you like to build?" required aria-label="Message"></textarea>
+        <button class="btn fill" type="submit">Send message</button>
+      </form>
+      <p class="lead" style="margin-top:22px">Or write to <a href="mailto:your.email@example.com" style="color:var(--coral)">your.email@example.com</a></p>
+    </div>
+  </section>
+</main>
+
+<footer>&copy; 2026 Pooja Shankar. Sri Sairam Engineering College.</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const touch = matchMedia('(pointer: coarse)').matches;
+
+  /* ---------- Hero title: letters rise in ---------- */
+  const title = document.getElementById('title');
+  const name = 'Pooja Shankar';
+  title.innerHTML = '';
+  [...name].forEach((ch,i)=>{
+    const s = document.createElement('span');
+    s.setAttribute('aria-hidden','true');
+    s.style.animationDelay = (0.15 + i*0.06)+'s';
+    s.innerHTML = ch === ' ' ? '&nbsp;' : ch;
+    title.appendChild(s);
+  });
+
+  /* ---------- Typed roles ---------- */
+  const words = ['AR/VR content creator','website designer','creative communicator','hackathon builder'];
+  const typed = document.getElementById('typed');
+  let w = 0, c = 0, del = false;
+  function type(){
+    const word = words[w];
+    typed.textContent = word.slice(0,c);
+    if(!del && c < word.length){ c++; setTimeout(type,70); }
+    else if(!del){ del = true; setTimeout(type,1500); }
+    else if(c > 0){ c--; setTimeout(type,35); }
+    else { del = false; w = (w+1)%words.length; setTimeout(type,300); }
+  }
+  if(reduce){ typed.textContent = words[0]; } else { setTimeout(type,1800); }
+
+  /* ---------- Nav: solid on scroll, mobile menu, active links ---------- */
+  const nav = document.getElementById('nav');
+  const burger = document.getElementById('burger');
+  addEventListener('scroll',()=> nav.classList.toggle('solid', scrollY > 40), {passive:true});
+  burger.addEventListener('click',()=>{
+    const open = nav.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open);
+  });
+  nav.addEventListener('click',e=>{ if(e.target.closest('a')) nav.classList.remove('open'); });
+
+  const ids = ['home','about','what','exp','work','lab','contact'];
+  const dots = [...document.querySelectorAll('#dots a')];
+  const links = [...document.querySelectorAll('nav a.l')];
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(en=>{
+      if(!en.isIntersecting) return;
+      const id = en.target.id;
+      dots.forEach(d=>d.classList.toggle('on', d.getAttribute('href') === '#'+id));
+      links.forEach(l=>l.classList.toggle('on', l.getAttribute('href') === '#'+id));
+    });
+  },{threshold:.5});
+  ids.forEach(id=>{ const el = document.getElementById(id); if(el) io.observe(el); });
+
+  /* ---------- Skill bars animate when visible ---------- */
+  const barIO = new IntersectionObserver(es=>{
+    es.forEach(e=>{ if(e.isIntersecting){
+      e.target.querySelectorAll('i[data-w]').forEach(b=> b.style.width = b.dataset.w+'%');
+      barIO.unobserve(e.target);
+    }});
+  },{threshold:.3});
+  barIO.observe(document.getElementById('bars'));
+
+  /* ---------- 3D tilt cards (follows the pointer) ---------- */
+  if(!touch && !reduce){
+    document.querySelectorAll('.tilt').forEach(card=>{
+      card.addEventListener('pointermove',e=>{
+        const r = card.getBoundingClientRect();
+        const px = (e.clientX - r.left)/r.width - .5;
+        const py = (e.clientY - r.top)/r.height - .5;
+        card.style.setProperty('--ry',(px*12)+'deg');
+        card.style.setProperty('--rx',(-py*12)+'deg');
+      });
+      card.addEventListener('pointerleave',()=>{
+        card.style.setProperty('--rx','0deg');
+        card.style.setProperty('--ry','0deg');
+      });
+    });
+  }
+
+  /* ---------- Cursor glow ---------- */
+  const glow = document.getElementById('glow');
+  if(!touch){
+    addEventListener('pointermove',e=>{ glow.style.left = e.clientX+'px'; glow.style.top = e.clientY+'px'; });
+  } else { glow.remove(); }
+
+  /* ---------- 3D skill sphere ---------- */
+  const box = document.getElementById('sphere');
+  const skills = ['AR content','VR content','3D design','Web design','UI/UX','Freelancing','Communication','Storytelling','Creative thinking','Hackathons','Presenting','Python (learning)','ML (exploring)','Problem solving'];
+  const els = skills.map(t=>{
+    const s = document.createElement('span');
+    s.className = 'tagw'; s.textContent = t; box.appendChild(s); return s;
+  });
+  const pts = skills.map((_,i)=>{
+    const k = (i+.5)/skills.length, phi = Math.acos(1-2*k), th = Math.PI*(1+Math.sqrt(5))*i;
+    return [Math.cos(th)*Math.sin(phi), Math.sin(th)*Math.sin(phi), Math.cos(phi)];
+  });
+  const base = reduce ? [0,0] : [.003,.006];
+  let ax = base[0], ay = base[1], tx = base[0], ty = base[1];
+  box.addEventListener('pointermove',e=>{
+    const r = box.getBoundingClientRect();
+    ty = ((e.clientX - r.left)/r.width - .5)*.05;
+    tx = -((e.clientY - r.top)/r.height - .5)*.05;
+  });
+  box.addEventListener('pointerleave',()=>{ tx = base[0]; ty = base[1]; });
+  function sphere(){
+    ax += (tx-ax)*.05; ay += (ty-ay)*.05;
+    const R = box.clientWidth*.38;
+    const cx = Math.cos(ax), sx = Math.sin(ax), cy = Math.cos(ay), sy = Math.sin(ay);
+    pts.forEach((p,i)=>{
+      const x = p[0], y = p[1], z = p[2];
+      const y1 = y*cx - z*sx, z1 = y*sx + z*cx;
+      const x2 = x*cy + z1*sy, z2 = -x*sy + z1*cy;
+      p[0] = x2; p[1] = y1; p[2] = z2;
+      const sc = (z2+2)/3;
+      els[i].style.transform = 'translate(-50%,-50%) translate3d('+(x2*R)+'px,'+(y1*R)+'px,0) scale('+sc+')';
+      els[i].style.opacity = .25 + .75*((z2+1)/2);
+      els[i].style.zIndex = Math.round((z2+1)*50);
+    });
+    requestAnimationFrame(sphere);
+  }
+  sphere();
+
+  /* ---------- Three.js: coral smoke + wireframe knot ---------- */
+  if(typeof THREE === 'undefined') return;
+  const canvas = document.getElementById('gl');
+  const renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:true});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(60,1,.1,100);
+  camera.position.z = 9;
+
+  function sprite(){
+    const cv = document.createElement('canvas'); cv.width = cv.height = 128;
+    const x = cv.getContext('2d');
+    const g = x.createRadialGradient(64,64,0,64,64,64);
+    g.addColorStop(0,'rgba(255,255,255,.9)'); g.addColorStop(1,'rgba(255,255,255,0)');
+    x.fillStyle = g; x.fillRect(0,0,128,128);
+    return new THREE.CanvasTexture(cv);
+  }
+
+  const N = touch ? 450 : 1000;
+  const pos = new Float32Array(N*3), col = new Float32Array(N*3), speed = new Float32Array(N), phase = new Float32Array(N);
+  const palette = [new THREE.Color('#f0555c'), new THREE.Color('#ffb9ae'), new THREE.Color('#9b1d34'), new THREE.Color('#ff7a7a')];
+  for(let i=0;i<N;i++){
+    pos[i*3]   = (Math.random()-.5)*26;
+    pos[i*3+1] = (Math.random()-.5)*16;
+    pos[i*3+2] = (Math.random()-.5)*12;
+    const c = palette[(Math.random()*palette.length)|0];
+    col[i*3] = c.r; col[i*3+1] = c.g; col[i*3+2] = c.b;
+    speed[i] = .004 + Math.random()*.012;
+    phase[i] = Math.random()*Math.PI*2;
+  }
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.BufferAttribute(pos,3));
+  geo.setAttribute('color', new THREE.BufferAttribute(col,3));
+  const smoke = new THREE.Points(geo, new THREE.PointsMaterial({
+    size:2.4, map:sprite(), vertexColors:true, transparent:true, opacity:.28,
+    depthWrite:false, blending:THREE.AdditiveBlending
+  }));
+  scene.add(smoke);
+
+  const group = new THREE.Group();
+  const knotMat = new THREE.MeshBasicMaterial({color:0xf0555c, wireframe:true, transparent:true, opacity:.35});
+  const knot = new THREE.Mesh(new THREE.TorusKnotGeometry(1.9,.5,180,24), knotMat);
+  const core = new THREE.Mesh(new THREE.IcosahedronGeometry(.9,1), new THREE.MeshBasicMaterial({color:0xffb9ae, wireframe:true, transparent:true, opacity:.45}));
+  group.add(knot, core);
+  scene.add(group);
+
+  let mx = 0, my = 0;
+  addEventListener('pointermove',e=>{ mx = e.clientX/innerWidth - .5; my = e.clientY/innerHeight - .5; });
+
+  function resize(){
+    renderer.setSize(innerWidth, innerHeight, false);
+    camera.aspect = innerWidth/innerHeight;
+    camera.updateProjectionMatrix();
+    group.scale.setScalar(innerWidth < 700 ? .7 : 1);
+  }
+  addEventListener('resize', resize); resize();
+
+  let t = 0;
+  function frame(){
+    t += .01;
+    const p = geo.attributes.position.array;
+    for(let i=0;i<N;i++){
+      p[i*3+1] += speed[i];
+      p[i*3]   += Math.sin(t + phase[i])*.004;
+      if(p[i*3+1] > 8) p[i*3+1] = -8;
+    }
+    geo.attributes.position.needsUpdate = true;
+
+    group.rotation.y += .004 + mx*.01;
+    group.rotation.x += ((my*1.0) - group.rotation.x)*.04;
+    group.position.x += ((mx*1.2) - group.position.x)*.04;
+    group.position.y += ((-my*.8) - group.position.y)*.04;
+    core.rotation.y -= .01;
+
+    smoke.rotation.y = mx*.25;
+    smoke.rotation.x = my*.15;
+
+    const fade = Math.max(0, 1 - scrollY/(innerHeight*.9));
+    knotMat.opacity = .35*fade;
+    core.material.opacity = .45*fade;
+
+    renderer.render(scene,camera);
+    if(!reduce) requestAnimationFrame(frame);
+  }
+  frame();
+})();
+</script>
+</body>
+</html>
