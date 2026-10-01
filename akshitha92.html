@@ -3,9 +3,888 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>Akshitha Anand | ECE Portfolio</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #080b16;
+            color: #f5f7ff;
+            line-height: 1.6;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(8, 11, 22, 0.92);
+            backdrop-filter: blur(12px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 8%;
+            z-index: 1000;
+            border-bottom: 1px solid #20263d;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #7c9cff;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 28px;
+        }
+
+        nav ul li a {
+            color: #d8dcf0;
+            text-decoration: none;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #7c9cff;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 8% 70px;
+            background:
+                radial-gradient(circle at 80% 20%, #17234d 0%, transparent 35%),
+                radial-gradient(circle at 20% 80%, #171c3b 0%, transparent 30%),
+                #080b16;
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .hello {
+            color: #7c9cff;
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 7vw, 76px);
+            line-height: 1.05;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 span {
+            color: #7c9cff;
+        }
+
+        .hero h2 {
+            font-size: 25px;
+            color: #b8bed5;
+            margin-bottom: 20px;
+            font-weight: normal;
+        }
+
+        .hero p {
+            color: #a8aec5;
+            max-width: 720px;
+            font-size: 17px;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 13px 23px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .primary {
+            background: #7c9cff;
+            color: #080b16;
+        }
+
+        .primary:hover {
+            transform: translateY(-3px);
+            background: #9bb3ff;
+        }
+
+        .secondary {
+            border: 1px solid #414a6b;
+            color: white;
+        }
+
+        .secondary:hover {
+            border-color: #7c9cff;
+            color: #7c9cff;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 90px 8%;
+        }
+
+        .section-title {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        .section-title span {
+            color: #7c9cff;
+        }
+
+        .section-subtitle {
+            color: #9299b4;
+            margin-bottom: 40px;
+        }
+
+        /* ABOUT */
+        .about {
+            background: #0d1120;
+        }
+
+        .about-box {
+            max-width: 900px;
+            background: #12182a;
+            padding: 30px;
+            border: 1px solid #242c47;
+            border-radius: 15px;
+        }
+
+        .about-box p {
+            color: #c1c6d9;
+            margin-bottom: 15px;
+        }
+
+        /* SKILLS */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: #12182a;
+            padding: 25px;
+            border-radius: 14px;
+            border: 1px solid #242c47;
+            transition: 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: #7c9cff;
+        }
+
+        .skill-card h3 {
+            color: #7c9cff;
+            margin-bottom: 12px;
+        }
+
+        .skill-card p {
+            color: #aeb4ca;
+        }
+
+        /* PROJECTS */
+        .projects {
+            background: #0d1120;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .project-card {
+            background: #12182a;
+            padding: 28px;
+            border-radius: 15px;
+            border: 1px solid #242c47;
+            transition: 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            border-color: #7c9cff;
+        }
+
+        .project-card h3 {
+            color: #ffffff;
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .project-card p {
+            color: #aeb4ca;
+            margin-bottom: 15px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background: #202946;
+            color: #aebdff;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        /* EXPERIENCE */
+        .timeline {
+            max-width: 900px;
+        }
+
+        .timeline-item {
+            border-left: 2px solid #7c9cff;
+            padding-left: 25px;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item h3 {
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .timeline-item .date {
+            color: #7c9cff;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .timeline-item p {
+            color: #aeb4ca;
+        }
+
+        /* EDUCATION */
+        .education-card {
+            background: #12182a;
+            border: 1px solid #242c47;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 850px;
+        }
+
+        .education-card h3 {
+            font-size: 23px;
+            margin-bottom: 8px;
+        }
+
+        .education-card .degree {
+            color: #7c9cff;
+            margin-bottom: 10px;
+        }
+
+        .education-card p {
+            color: #aeb4ca;
+        }
+
+        /* CERTIFICATIONS */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .cert-card {
+            padding: 25px;
+            border: 1px solid #242c47;
+            background: #12182a;
+            border-radius: 14px;
+        }
+
+        .cert-card h3 {
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .cert-card p {
+            color: #aeb4ca;
+        }
+
+        /* CONTACT */
+        .contact {
+            background: #0d1120;
+            text-align: center;
+        }
+
+        .contact p {
+            color: #aeb4ca;
+            margin-bottom: 25px;
+        }
+
+        .contact-box {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            text-decoration: none;
+            color: white;
+            border: 1px solid #3a4464;
+            padding: 12px 20px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .contact-link:hover {
+            border-color: #7c9cff;
+            color: #7c9cff;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: #080b16;
+            border-top: 1px solid #20263d;
+            color: #777f9d;
+        }
+
+        /* MOBILE */
+        @media (max-width: 700px) {
+
+            nav {
+                padding: 15px 5%;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            section {
+                padding: 70px 6%;
+            }
+
+            .hero {
+                padding: 120px 6% 60px;
+            }
+
+            .hero h1 {
+                font-size: 46px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="logo">AA.</div>
+
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <div class="hello">Hello, I'm</div>
+
+            <h1>
+                Akshitha <span>Anand</span>
+            </h1>
+
+            <h2>
+                Electronics & Communication Engineering Student
+            </h2>
+
+            <p>
+                I am an ECE student interested in VLSI, digital electronics,
+                embedded systems and hardware-oriented problem solving.
+                I enjoy learning through practical projects and continuously
+                building my technical skills.
+            </p>
+
+            <div class="buttons">
+                <a href="#projects" class="btn primary">
+                    View My Projects
+                </a>
+
+                <a href="#contact" class="btn secondary">
+                    Contact Me
+                </a>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+    <section id="about" class="about">
+
+        <h2 class="section-title">
+            About <span>Me</span>
+        </h2>
+
+        <p class="section-subtitle">
+            Electronics • VLSI • Embedded Systems • Problem Solving
+        </p>
+
+        <div class="about-box">
+
+            <p>
+                I am pursuing a Bachelor of Engineering in Electronics and
+                Communication Engineering. My current areas of interest
+                include VLSI design, digital electronics, embedded systems
+                and hardware-based applications.
+            </p>
+
+            <p>
+                I am currently strengthening my fundamentals in digital
+                electronics, VLSI concepts, programming and embedded systems
+                while working on academic and innovation-oriented projects.
+            </p>
+
+            <p>
+                My goal is to develop strong technical foundations and gain
+                practical experience that will help me build a career in
+                the electronics and VLSI domain.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- SKILLS -->
+    <section id="skills">
+
+        <h2 class="section-title">
+            Technical <span>Skills</span>
+        </h2>
+
+        <p class="section-subtitle">
+            Technologies and concepts I am currently learning and applying.
+        </p>
+
+        <div class="skills-grid">
+
+            <div class="skill-card">
+                <h3>VLSI & Digital</h3>
+                <p>
+                    Digital Electronics, CMOS Logic, Verilog HDL,
+                    RTL concepts, VLSI Design Flow, SPICE basics
+                </p>
+            </div>
+
+            <div class="skill-card">
+                <h3>Programming</h3>
+                <p>
+                    C, Python and basic programming concepts with
+                    logical problem solving
+                </p>
+            </div>
+
+            <div class="skill-card">
+                <h3>Embedded Systems</h3>
+                <p>
+                    Arduino, ESP32, sensors, basic IoT concepts
+                    and hardware interfacing
+                </p>
+            </div>
+
+            <div class="skill-card">
+                <h3>Tools</h3>
+                <p>
+                    MATLAB, LabVIEW basics, Git, GitHub and
+                    basic development workflows
+                </p>
+            </div>
+
+            <div class="skill-card">
+                <h3>Core Subjects</h3>
+                <p>
+                    Digital Electronics, Signals & Systems,
+                    VLSI, DSP and Electronics fundamentals
+                </p>
+            </div>
+
+            <div class="skill-card">
+                <h3>Professional Skills</h3>
+                <p>
+                    Logical thinking, teamwork, testing,
+                    coordination and presentation
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PROJECTS -->
+    <section id="projects" class="projects">
+
+        <h2 class="section-title">
+            Featured <span>Projects</span>
+        </h2>
+
+        <p class="section-subtitle">
+            Academic, innovation and electronics projects.
+        </p>
+
+        <div class="project-grid">
+
+
+            <!-- PROJECT 1 -->
+            <div class="project-card">
+
+                <h3>CMOS Inverter & Analog Circuits</h3>
+
+                <p>
+                    Implemented and studied basic CMOS and analog circuit
+                    designs using SPICE-based simulation concepts, including
+                    CMOS inverter and differential amplifier circuits.
+                </p>
+
+                <div class="tags">
+                    <span class="tag">CMOS</span>
+                    <span class="tag">SPICE</span>
+                    <span class="tag">VLSI</span>
+                    <span class="tag">Analog</span>
+                </div>
+
+            </div>
+
+
+            <!-- PROJECT 2 -->
+            <div class="project-card">
+
+                <h3>Digital Systems using Verilog</h3>
+
+                <p>
+                    Practiced RTL design and Verilog HDL implementation of
+                    digital systems such as ALU, RAM, universal shift register,
+                    and Moore/Mealy finite state machines.
+                </p>
+
+                <div class="tags">
+                    <span class="tag">Verilog HDL</span>
+                    <span class="tag">RTL</span>
+                    <span class="tag">Digital Design</span>
+                </div>
+
+            </div>
+
+
+            <!-- PROJECT 3 -->
+            <div class="project-card">
+
+                <h3>MannAI – Smart Farming Assistant</h3>
+
+                <p>
+                    An agricultural innovation concept combining a smart
+                    pesticide spraying attachment with a digital farming
+                    assistant. The system focuses on reducing unnecessary
+                    pesticide usage through targeted spraying.
+                </p>
+
+                <div class="tags">
+                    <span class="tag">ESP32</span>
+                    <span class="tag">IoT</span>
+                    <span class="tag">Smart Agriculture</span>
+                    <span class="tag">Sensors</span>
+                </div>
+
+            </div>
+
+
+            <!-- PROJECT 4 -->
+            <div class="project-card">
+
+                <h3>EduSync – Smart College Companion</h3>
+
+                <p>
+                    An AI-powered college companion concept featuring study
+                    planning, note summarization, budget management,
+                    wellness tracking and career guidance.
+                </p>
+
+                <div class="tags">
+                    <span class="tag">AI</span>
+                    <span class="tag">Flutter</span>
+                    <span class="tag">Firebase</span>
+                    <span class="tag">BERT</span>
+                </div>
+
+            </div>
+
+
+            <!-- PROJECT 5 -->
+            <div class="project-card">
+
+                <h3>KAAL KHEL – Play the Past</h3>
+
+                <p>
+                    A historical educational game concept designed to make
+                    Indian history interactive through story-driven missions,
+                    exploration, tasks and quizzes.
+                </p>
+
+                <div class="tags">
+                    <span class="tag">Game Design</span>
+                    <span class="tag">Indian History</span>
+                    <span class="tag">Interactive Learning</span>
+                </div>
+
+            </div>
+
+
+            <!-- PROJECT 6 -->
+            <div class="project-card">
+
+                <h3>Helmet Safety & Ignition System</h3>
+
+                <p>
+                    A prototype concept using sensors and a microcontroller
+                    to monitor helmet-related safety conditions and control
+                    vehicle ignition accordingly.
+                </p>
+
+                <div class="tags">
+                    <span class="tag">Arduino</span>
+                    <span class="tag">MQ-3</span>
+                    <span class="tag">Sensors</span>
+                    <span class="tag">Embedded</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+
+        <h2 class="section-title">
+            Experience & <span>Activities</span>
+        </h2>
+
+        <p class="section-subtitle">
+            Learning experiences and technical activities.
+        </p>
+
+        <div class="timeline">
+
+            <div class="timeline-item">
+
+                <h3>Embedded Systems & IoT Internship Exposure</h3>
+
+                <div class="date">
+                    Datcam / Geek Wave Solution
+                </div>
+
+                <p>
+                    Gained introductory exposure to embedded systems,
+                    IoT concepts and LabVIEW-based experimentation.
+                </p>
+
+            </div>
+
+
+            <div class="timeline-item">
+
+                <h3>Hackathon Participant</h3>
+
+                <div class="date">
+                    SVCE 24-Hour Hackathon
+                </div>
+
+                <p>
+                    Participated in a team-based hackathon and contributed
+                    to the ideation and development process of an
+                    AI-based multilingual travel chatbot concept.
+                </p>
+
+            </div>
+
+
+            <div class="timeline-item">
+
+                <h3>Technical Learning & Project Coordination</h3>
+
+                <div class="date">
+                    Academic Activities
+                </div>
+
+                <p>
+                    Participating in technical projects, testing activities,
+                    team coordination and electronics-focused learning.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- EDUCATION -->
+    <section id="education">
+
+        <h2 class="section-title">
+            <span>Education</span>
+        </h2>
+
+        <p class="section-subtitle">
+            Academic background
+        </p>
+
+        <div class="education-card">
+
+            <h3>
+                Sri Sairam Institute of Technology
+            </h3>
+
+            <div class="degree">
+                Bachelor of Engineering – Electronics and Communication Engineering
+            </div>
+
+            <p>
+                Expected Graduation: 2028
+            </p>
+
+            <p>
+                Focus Areas: VLSI, Digital Electronics, Embedded Systems,
+                Signal Processing and Electronics.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- CERTIFICATIONS -->
+    <section>
+
+        <h2 class="section-title">
+            Certifications & <span>Learning</span>
+        </h2>
+
+        <p class="section-subtitle">
+            Courses and certifications
+        </p>
+
+        <div class="cert-grid">
+
+            <div class="cert-card">
+
+                <h3>NPTEL – Python</h3>
+
+                <p>
+                    Completed NPTEL coursework in Python programming.
+                </p>
+
+            </div>
+
+
+            <div class="cert-card">
+
+                <h3>NPTEL – Fundamentals of Object-Oriented Programming</h3>
+
+                <p>
+                    Silver badge with a score of 80%.
+                </p>
+
+            </div>
+
+
+            <div class="cert-card">
+
+                <h3>VLSI & Digital Design Learning</h3>
+
+                <p>
+                    Currently strengthening knowledge in RTL design,
+                    Verilog, CMOS concepts and VLSI design flow.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact">
+
+        <h2 class="section-title">
+            Let's <span>Connect</span>
+        </h2>
+
+        <p>
+            I am open to learning opportunities, technical projects,
+            internships and collaborations in electronics and VLSI.
+        </p>
+
+        <div class="contact-box">
+
+            <a
+                href="mailto:akshithaa1908@gamil.com"
+                class="contact-link">
+                Email Me
+            </a>
+
+            <a
+                href="https://github.com/akshitha92"
+                target="_blank"
+                class="contact-link">
+                GitHub
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <p>
+            © 2026 Akshitha Anand | Electronics & Communication Engineering
+        </p>
+
+    </footer>
+
 </body>
 </html>
