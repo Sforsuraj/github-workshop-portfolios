@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kishore Vinayagam | Mechanical Design Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#e8edf1;--bg2:#dbe2e8;--ink:#15202b;--mute:#4d5b69;--line:#b7c2cc;--acc:#1f4fd8;--card:#f4f7f9;--edge:#15202b;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10171f;--bg2:#17212c;--ink:#e6edf3;--mute:#9aa9b8;--line:#2c3a49;--acc:#6f9bff;--card:#1a2531;--edge:#dfe9f5}}
+:root[data-theme="dark"]{--bg:#10171f;--bg2:#17212c;--ink:#e6edf3;--mute:#9aa9b8;--line:#2c3a49;--acc:#6f9bff;--card:#1a2531;--edge:#dfe9f5}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 "IBM Plex Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:700;line-height:1;margin:0;letter-spacing:.01em}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:56px;gap:16px}
+nav b{font:700 20px "Barlow Condensed",sans-serif}
+nav div{display:flex;gap:20px;font-size:14px;overflow-x:auto}
+nav a{text-decoration:none;color:var(--mute);white-space:nowrap}nav a:hover{color:var(--ink)}
+.hero{display:grid;grid-template-columns:1fr 1.15fr;align-items:center;gap:24px;min-height:calc(100vh - 56px);background:radial-gradient(circle at 70% 45%,var(--bg2),var(--bg) 70%)}
+.hero h1{font-size:clamp(56px,9vw,112px)}
+.hero p.role{font-size:18px;color:var(--mute);margin:18px 0 8px;max-width:30em}
+.hero .meta{font-size:14px;color:var(--mute)}
+.btns{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+.btn{border:1px solid var(--ink);padding:10px 18px;text-decoration:none;font-weight:500;font-size:15px;background:none;color:var(--ink);cursor:pointer;font-family:inherit}
+.btn.p{background:var(--acc);border-color:var(--acc);color:#fff}
+.viewer{position:relative;height:min(74vh,620px);touch-action:pan-y;cursor:grab}
+.viewer:active{cursor:grabbing}
+.viewer canvas{width:100%;height:100%;display:block}
+.vbar{position:absolute;left:0;right:0;bottom:8px;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--mute);gap:8px;flex-wrap:wrap}
+section{padding:88px 0;border-top:1px solid var(--line)}
+h2{font-size:clamp(36px,5vw,56px);margin-bottom:32px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.lead{font-size:20px;line-height:1.55;max-width:34em}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);margin-top:8px}
+.stats div{padding:18px;border-right:1px solid var(--line)}.stats div:last-child{border:0}
+.stats b{display:block;font:700 34px "Barlow Condensed",sans-serif}
+.stats span{font-size:13px;color:var(--mute)}
+.skills dt{font:700 20px "Barlow Condensed",sans-serif;margin-top:20px}
+.skills dd{margin:4px 0 0;color:var(--mute)}
+.feat{background:var(--card);border:1px solid var(--line);padding:32px;display:grid;grid-template-columns:1.2fr 1fr;gap:40px}
+.feat h3{font-size:40px;margin-bottom:12px}
+.feat p{color:var(--mute);margin:0 0 14px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+th{font-weight:500;color:var(--mute)}
+td:last-child{text-align:right}
+.tag{display:inline-block;font-size:13px;border:1px solid var(--line);padding:2px 10px;margin:0 6px 6px 0;color:var(--mute)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.card{border:1px solid var(--line);padding:24px;background:var(--card)}
+.card h3{font-size:28px;margin-bottom:6px}
+.card small{color:var(--acc);font-weight:500}
+.card ul{padding-left:18px;margin:14px 0 0;color:var(--mute);font-size:15px}
+.card li{margin-bottom:6px}
+.edu p{margin:0 0 20px}.edu b{font-weight:500}
+footer{padding:64px 0 48px;border-top:1px solid var(--line)}
+footer h2{margin-bottom:16px}
+footer a{display:block;font-size:20px;margin:6px 0}
+@media (max-width:820px){.hero,.two,.feat,.grid{grid-template-columns:1fr}.hero{min-height:0;padding-top:32px}.viewer{height:420px}section{padding:64px 0}nav div{gap:14px}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><b>KV</b><div><a href="#about">About</a><a href="#drone">Drone</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#contact">Contact</a></div></div></nav>
+
+<header class="wrap hero">
+  <div>
+    <h1>Kishore<br>Vinayagam</h1>
+    <p class="role">Mechanical design engineer, seeking a summer design internship. I model in SolidWorks and Creo, draw to IS standards, and write Python to automate the calculations.</p>
+    <p class="meta">B.E Mechanical Engineering, Sri Sairam Institute of Technology, Chennai</p>
+    <div class="btns"><a class="btn p" href="#drone">See the drone assembly</a><a class="btn" href="#contact">Get in touch</a></div>
+  </div>
+  <div class="viewer" id="viewer" aria-label="Interactive 3D drone model. Drag to rotate.">
+    <div class="vbar"><span>Drag to rotate</span><button class="btn" id="ex" style="padding:6px 14px">Exploded view</button></div>
+  </div>
+</header>
+
+<section id="about"><div class="wrap two">
+  <div><h2>About</h2><p class="lead">Second-year mechanical engineering student who works through the full design chain: 3D model, assembly, drawing, bill of materials. Selected for Smart India Hackathon 2025 at college level.</p></div>
+  <div class="stats" style="align-self:end"><div><b>8.25</b><span>GPA out of 10</span></div><div><b>3</b><span>CAD tools</span></div><div><b>5</b><span>design projects</span></div></div>
+</div></section>
+
+<section id="drone"><div class="wrap">
+  <h2>Featured project: Drone assembly</h2>
+  <div class="feat">
+    <div>
+      <h3>Multi-arm drone, full assembly in Creo</h3>
+      <p>A complete drone assembly built in Creo Parametric 12, organised as sub-assemblies and standard parts: a plate-based frame, a head block with top cap, a camera sub-assembly, six wing sub-assemblies with motor rods and blades, and M4 fasteners throughout.</p>
+      <p>The viewer above is a stylised model of this layout. Use the exploded view to see how the groups separate.</p>
+      <span class="tag">Creo Parametric</span><span class="tag">Assembly design</span><span class="tag">Sub-assemblies</span><span class="tag">Fasteners</span>
+    </div>
+    <table>
+      <tr><th>Component (from the assembly)</th><th>Type</th></tr>
+      <tr><td>ASSEMBLY_PLATE</td><td>Part</td></tr>
+      <tr><td>HEAD_BLOCK</td><td>Part</td></tr>
+      <tr><td>HEAD_CAP_TOP</td><td>Part</td></tr>
+      <tr><td>CAM_SUB_ASM</td><td>Sub-assembly</td></tr>
+      <tr><td>WING_SUB_ASM (6 instances)</td><td>Sub-assembly</td></tr>
+      <tr><td>MOTOR_ROD</td><td>Part</td></tr>
+      <tr><td>BLADE</td><td>Part</td></tr>
+      <tr><td>BOLT_4_15, BOLT_4_24</td><td>Fastener</td></tr>
+      <tr><td>NUT_4_ID</td><td>Fastener</td></tr>
+    </table>
+  </div>
+</div></section>
+
+<section id="projects"><div class="wrap">
+  <h2>Other projects</h2>
+  <div class="grid">
+    <div class="card"><h3>Bench Vice</h3><small>SolidWorks, 2024-25</small><ul><li>Parametric models of fixed jaw, sliding jaw, screw and handle.</li><li>Fully constrained assembly with mates, checked for fit and clearance.</li><li>2D drawings with GD&amp;T, tolerances and title block to IS standards.</li><li>Bill of materials with material specs and standard fasteners.</li></ul></div>
+    <div class="card"><h3>Machine component drafting</h3><small>AutoCAD, 2024-25</small><ul><li>Orthographic drawings of a flanged coupling, knuckle joint and cotter joint.</li><li>Dimensioning, surface finish symbols and sections per IS 696.</li><li>Tolerance stack-up practice for the flanged coupling.</li></ul></div>
+    <div class="card"><h3>Beam calculator</h3><small>Python, self-initiated</small><ul><li>Bending stress, shear force and deflection for simply supported and cantilever beams.</li><li>Works across I-beam, rectangular and circular sections.</li><li>Matched manual coursework calculations within 0.5%.</li></ul></div>
+    <div class="card"><h3>Spur gear</h3><small>Creo Parametric, 2024-25</small><ul><li>Gear driven by module, pitch circle diameter and tooth profile parameters.</li><li>Changed teeth count, pressure angle and face width; the model updated automatically.</li><li>Interference check between mating gears before drawings.</li></ul></div>
+  </div>
+</div></section>
+
+<section id="skills"><div class="wrap two">
+  <div><h2>Skills</h2>
+    <dl class="skills" style="margin:0">
+      <dt>CAD</dt><dd>SolidWorks, CREO Parametric, AutoCAD, 3D modelling, assembly design, engineering drawing</dd>
+      <dt>Design knowledge</dt><dd>GD&amp;T, Design for Manufacturing, Bill of Materials, tolerance analysis</dd>
+      <dt>Engineering subjects</dt><dd>Thermodynamics, Fluid Mechanics, Strength of Materials, Manufacturing Processes</dd>
+      <dt>Programming</dt><dd>Python, C, C++ for automation and calculations</dd>
+    </dl></div>
+  <div class="edu"><h2>Education</h2>
+    <p><b>B.E Mechanical Engineering</b><br>Sri Sairam Institute of Technology, Chennai<br>GPA 8.25 / 10, 2024 to present</p>
+    <p><b>Class XII, Science (PCM)</b><br>Maharishi Vidya Mandir Senior Secondary School<br>74.2%, 2023-24</p>
+    <p><b>Recognition</b><br>Smart India Hackathon 2025, selected among top teams at college level<br>C, C++ and Java certification, Cogtis Technology Pvt. Ltd.</p></div>
+</div></section>
+
+<footer id="contact"><div class="wrap">
+  <h2>Contact</h2>
+  <a href="mailto:kishorevinayagam2007@gmail.com">kishorevinayagam2007@gmail.com</a>
+  <a href="tel:+919840583494">+91 98405 83494</a>
+  <a href="https://linkedin.com/in/kishore-vinayagam">linkedin.com/in/kishore-vinayagam</a>
+  <p style="color:var(--mute)">Chennai, Tamil Nadu</p>
+</div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+const el=document.getElementById('viewer'),reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(38,1,.1,100);cam.position.set(0,2.2,8.2);cam.lookAt(0,0,0);
+const r=new THREE.WebGLRenderer({antialias:true,alpha:true});r.setPixelRatio(Math.min(devicePixelRatio,2));el.prepend(r.domElement);
+scene.add(new THREE.AmbientLight(0xffffff,.7));const dl=new THREE.DirectionalLight(0xffffff,.9);dl.position.set(4,7,5);scene.add(dl);
+const root=new THREE.Group(),g=new THREE.Group();root.add(g);scene.add(root);root.rotation.x=.35;
+const edgeMats=[],parts=[],blades=[];
+const dark=()=>getComputedStyle(document.documentElement).getPropertyValue('--edge').trim();
+function mk(geo,col,pos,ex,rot){const m=new THREE.Mesh(geo,new THREE.MeshStandardMaterial({color:col,roughness:.55,metalness:.25}));
+ const em=new THREE.LineBasicMaterial({color:0x15202b,transparent:true,opacity:.55});edgeMats.push(em);
+ m.add(new THREE.LineSegments(new THREE.EdgesGeometry(geo,25),em));m.position.copy(pos);
+ m.userData={b:pos.clone(),e:ex||new THREE.Vector3()};if(rot)m.rotation.set(...rot);g.add(m);parts.push(m);return m}
+const V=(x,y,z)=>new THREE.Vector3(x,y,z);
+mk(new THREE.CylinderGeometry(1.15,1.15,.14,6),0x8a97a4,V(0,0,0),V(0,-.15,0));
+mk(new THREE.BoxGeometry(.9,.4,.9),0x1f4fd8,V(0,-.28,0),V(0,-.55,0));
+mk(new THREE.CylinderGeometry(.55,.55,.16,32),0x2b3a4b,V(0,.15,0),V(0,1.1,0));
+mk(new THREE.SphereGeometry(.26,24,16),0x101820,V(0,-.72,.1),V(0,-1.2,0));
+for(let i=0;i<6;i++){const a=i*Math.PI/3+Math.PI/6,c=Math.cos(a),s=Math.sin(a),o=V(c,0,s);
+ const arm=mk(new THREE.BoxGeometry(2.3,.1,.2),0x9fb0c0,V(c*2.2,0,s*2.2),o.clone().multiplyScalar(.7));arm.rotation.y=-a;
+ mk(new THREE.CylinderGeometry(.24,.24,.34,20),0x1f4fd8,V(c*3.3,.14,s*3.3),o.clone().multiplyScalar(1.1).add(V(0,.3,0)));
+ const bl=mk(new THREE.BoxGeometry(1.5,.03,.1),0x2b3a4b,V(c*3.3,.36,s*3.3),o.clone().multiplyScalar(1.1).add(V(0,.9,0)));bl.rotation.y=i;blades.push(bl)}
+function size(){const w=el.clientWidth,h=el.clientHeight;r.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()}
+addEventListener('resize',size);size();
+let drag=false,lx=0,ly=0,vy=reduce?0:.004,t=0,tgt=0;
+el.addEventListener('pointerdown',e=>{if(e.target.closest('button'))return;drag=true;lx=e.clientX;ly=e.clientY;el.setPointerCapture(e.pointerId)});
+el.addEventListener('pointermove',e=>{if(!drag)return;g.rotation.y+=(e.clientX-lx)*.01;root.rotation.x=Math.max(-.2,Math.min(1.1,root.rotation.x+(e.clientY-ly)*.006));lx=e.clientX;ly=e.clientY});
+el.addEventListener('pointerup',()=>drag=false);
+const btn=document.getElementById('ex');btn.onclick=()=>{tgt=tgt?0:1;btn.textContent=tgt?'Assembled view':'Exploded view';if(reduce)t=tgt};
+function frame(){requestAnimationFrame(frame);
+ if(!drag)g.rotation.y+=vy;t+=(tgt-t)*(reduce?1:.08);
+ parts.forEach(p=>p.position.copy(p.userData.b).addScaledVector(p.userData.e,t));
+ if(!reduce)blades.forEach(b=>b.rotation.y+=.35*(1-t*.8));
+ const c=dark();edgeMats.forEach(m=>m.color.set(c));
+ r.render(scene,cam)}
+frame();
+})();
+</script>
+</body>
+</html>

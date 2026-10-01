@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rahul J | AI &amp; Data Science Student, Chennai</title>
+<meta name="description" content="Portfolio of Rahul J, an AI &amp; Data Science student in Chennai building IoT, healthcare and Tamil-language digital literacy projects.">
+<meta property="og:title" content="Rahul J | AI &amp; Data Science Student">
+<meta property="og:description" content="IoT, healthcare AI and Tamil-language tools for underserved communities.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+<style>
+/* Anything wrapped in <span class="todo"> is a placeholder: replace it, then delete the span. */
+:root{--bg:#F8F9FB;--card:#fff;--ink:#15181E;--mute:#5C6472;--line:#E2E5EB;--acc:#1D6B57}
+[data-theme=dark]{--bg:#101318;--card:#161A21;--ink:#ECEFF4;--mute:#9AA3B2;--line:#232933;--acc:#5FC9A8}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.65 "Instrument Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration-color:var(--line);text-underline-offset:3px}
+a:hover{text-decoration-color:var(--acc);color:var(--acc)}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:3px}
+.wrap{max-width:920px;margin:0 auto;padding:0 24px}
+.todo{background:color-mix(in srgb,var(--acc) 16%,transparent);padding:0 .3em;border-radius:3px}
+header{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
+.logo{font:500 1.15rem "Newsreader",serif;text-decoration:none}
+nav{display:flex;gap:20px;align-items:center;font-size:.9rem}
+nav a{text-decoration:none;color:var(--mute)}
+nav a:hover{color:var(--ink)}
+#theme{font:inherit;font-size:.85rem;background:none;border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:3px 12px;cursor:pointer}
+#theme:hover{border-color:var(--acc)}
+.hero{padding:96px 0 72px}
+h1{font:400 clamp(2.8rem,8vw,5rem)/1.02 "Newsreader",serif;letter-spacing:-.025em;margin:0 0 24px}
+.lead{font-size:1.25rem;line-height:1.5;max-width:34em;margin:0 0 20px}
+.status{color:var(--mute);margin:0 0 32px}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-block;padding:10px 20px;border-radius:8px;border:1px solid var(--ink);text-decoration:none;font-weight:500;font-size:.95rem}
+.btn.p{background:var(--ink);color:var(--bg)}
+.btn.p:hover{background:var(--acc);border-color:var(--acc);color:#fff}
+.btn:not(.p):hover{border-color:var(--acc)}
+section.s{display:grid;grid-template-columns:200px 1fr;gap:32px;padding:56px 0;border-top:1px solid var(--line)}
+h2{font:500 1.4rem "Newsreader",serif;margin:0;letter-spacing:-.01em}
+p{margin:0 0 14px}
+.mute{color:var(--mute)}
+/* projects */
+.proj{border-bottom:1px solid var(--line)}
+.proj:first-child{border-top:1px solid var(--line)}
+.ph{all:unset;box-sizing:border-box;width:100%;display:grid;grid-template-columns:1fr auto 24px;gap:4px 16px;align-items:baseline;padding:18px 0;cursor:pointer}
+.ph:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.pn{font:500 1.35rem "Newsreader",serif}
+.pd{grid-column:1;color:var(--mute);font-size:.95rem}
+.ps{grid-column:2;grid-row:1;color:var(--acc);font-size:.85rem}
+.ic{grid-column:3;grid-row:1;position:relative;width:14px;height:14px;align-self:center}
+.ic:before,.ic:after{content:"";position:absolute;background:var(--ink);left:0;top:6px;width:14px;height:2px;transition:transform .25s}
+.ic:after{transform:rotate(90deg)}
+.open .ic:after{transform:rotate(0)}
+.pb{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease}
+.open .pb{grid-template-rows:1fr}
+.pb>div{overflow:hidden;visibility:hidden}
+.open .pb>div{visibility:visible;padding-bottom:20px}
+ul{margin:0 0 14px;padding-left:1.1em}
+li{margin-bottom:6px}
+.stack{color:var(--mute);font-size:.92rem}
+.links{display:flex;gap:18px;font-size:.92rem;margin:0}
+/* experience */
+.item{margin-bottom:28px}
+.item h3{font:500 1.1rem "Instrument Sans",sans-serif;margin:0}
+.item .when{color:var(--mute);font-size:.9rem;margin-bottom:8px}
+/* skills */
+dl{margin:0;display:grid;grid-template-columns:150px 1fr;gap:10px 20px}
+dt{font-weight:600;font-size:.95rem}
+dd{margin:0;color:var(--mute)}
+dd b{color:var(--ink);font-weight:400}
+.contact a{display:inline-block;margin:0 22px 8px 0;font-size:1.1rem}
+footer{border-top:1px solid var(--line);padding:28px 0 48px;color:var(--mute);font-size:.9rem}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+@media(max-width:720px){
+ nav a.hide{display:none}
+ section.s{grid-template-columns:1fr;gap:18px;padding:44px 0}
+ .hero{padding:64px 0 48px}
+ dl{grid-template-columns:1fr;gap:2px}dd{margin-bottom:12px}
+ .ph{grid-template-columns:1fr 24px}.ps{grid-column:1;grid-row:auto}.ic{grid-column:2;grid-row:1}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.pb,.ic:before,.ic:after{transition:none}}
+</style>
+</head>
+<body>
+<header>
+ <div class="wrap">
+  <a class="logo" href="#top">Rahul J</a>
+  <nav aria-label="Main">
+   <a class="hide" href="#about">About</a>
+   <a href="#projects">Projects</a>
+   <a class="hide" href="#experience">Experience</a>
+   <a class="hide" href="#skills">Skills</a>
+   <a href="#contact">Contact</a>
+   <button id="theme" type="button" aria-label="Switch colour theme">Dark</button>
+  </nav>
+ </div>
+</header>
+
+<main class="wrap" id="top">
+ <section class="hero">
+  <h1>Rahul J</h1>
+  <p class="lead">AI &amp; Data Science student building IoT, healthcare and Tamil-language tools for underserved communities.</p>
+  <p class="status">Tambaram, Chennai. Open to internships and campus placements <span class="todo">[graduation year]</span>.</p>
+  <div class="btns">
+   <a class="btn p" href="resume.pdf" download>Download resume</a>
+   <a class="btn" href="#projects">See projects</a>
+   <a class="btn" href="#contact">Contact me</a>
+  </div>
+ </section>
+
+ <section class="s" id="about">
+  <h2>About</h2>
+  <div>
+   <p>I'm an AI &amp; Data Science student at Sri Sairam Institute of Technology, Chennai (Anna University). I like taking an idea from a real problem to a working prototype: an IoT safety system, a healthcare platform where a doctor approves every AI answer, and a Tamil-language learning platform shaped by village field visits.</p>
+   <p>I build automations with n8n and the Groq API, prepare for campus placements with Java and DSA, and explore AI-generated video in my free time. I'm looking for <span class="todo">[internship or role type]</span> where I can build AI products with real-world impact.</p>
+  </div>
+ </section>
+
+ <section class="s" id="projects">
+  <h2>Projects</h2>
+  <div>
+   <div class="proj open">
+    <button class="ph" type="button" aria-expanded="true" aria-controls="p1"><span class="pn">NALAM</span><span class="pd">Healthcare platform with doctor-approved AI answers</span><span class="ic" aria-hidden="true"></span></button>
+    <div class="pb" id="p1"><div>
+     <p>Connects patients, doctors and pharmacies to reduce the fragmentation and inefficiency of rural and underserved healthcare.</p>
+     <ul>
+      <li><b>Patient:</b> appointment booking, voice and text queries, digital prescriptions.</li>
+      <li><b>Doctor:</b> appointment dashboard, query management, prescription generation.</li>
+      <li><b>Pharmacy:</b> billing, medicine search, barcode scanning, UPI QR payments, inventory and low-stock alerts.</li>
+      <li><b>AI with a human in the loop:</b> a retrieval-augmented (RAG) system pulls patient history, past queries and medical references. The doctor edits, approves or rejects the suggested reply before the patient sees it.</li>
+      <li>Structured prescriptions are shared over WhatsApp. The system follows a client-server, cloud architecture.</li>
+     </ul>
+     <p class="stack">Stack: <span class="todo">[add technologies]</span></p>
+     <p class="links"><a href="https://github.com/YOUR-USERNAME/nalam">GitHub</a><a href="https://YOUR-DEMO-LINK/nalam">Live demo</a><a href="docs/nalam-documentation.pdf">Documentation</a></p>
+    </div></div>
+   </div>
+
+   <div class="proj">
+    <button class="ph" type="button" aria-expanded="false" aria-controls="p2"><span class="pn">Minnoli (மின்னொளி)</span><span class="pd">Tamil-language digital literacy for rural communities</span><span class="ic" aria-hidden="true"></span></button>
+    <div class="pb" id="p2"><div>
+     <p>A Tamil-language digital literacy platform developed under the AICTE Rural Internship Programme and Unnat Bharat Abhiyan.</p>
+     <ul>
+      <li>Field visits in Somangalam and Poonthandalam villages shaped the problem definition.</li>
+      <li>Interactive 3D entrance animation built with Three.js.</li>
+      <li>Produced a project presentation, a full report with field photographs, and a Gate 1 evaluation on problem fit and research readiness (scored 10/10).</li>
+      <li><span class="todo">[add number of people surveyed and one key finding]</span></li>
+     </ul>
+     <p class="stack">Stack: HTML, CSS, JavaScript, Three.js</p>
+     <p class="links"><a href="https://github.com/YOUR-USERNAME/minnoli">GitHub</a><a href="https://YOUR-DEMO-LINK/minnoli">Live demo</a></p>
+    </div></div>
+   </div>
+
+   <div class="proj">
+    <button class="ph" type="button" aria-expanded="false" aria-controls="p3"><span class="pn">GasIQ</span><span class="pd">IoT gas leakage detection and automatic shut-off</span><span class="ic" aria-hidden="true"></span></button>
+    <div class="pb" id="p3"><div>
+     <p>An MQ-2 sensor and a NodeMCU ESP8266 detect gas. Blynk sends alerts to the user, and relay actuators close a solenoid valve to cut the supply.</p>
+     <ul>
+      <li>Complete system flowchart, a 10-slide presentation and a formatted project report.</li>
+      <li>Machine learning enhancements are planned: <span class="todo">[add, for example anomaly detection]</span>.</li>
+      <li><span class="todo">[add response time or a test result]</span></li>
+     </ul>
+     <p class="stack">Hardware: MQ-2, NodeMCU ESP8266, relays, solenoid valve. Software: Blynk</p>
+     <p class="links"><a href="https://github.com/YOUR-USERNAME/gasiq">GitHub</a><a href="https://YOUR-VIDEO-LINK/gasiq">Demo video</a></p>
+    </div></div>
+   </div>
+
+   <div class="proj">
+    <button class="ph" type="button" aria-expanded="false" aria-controls="p4"><span class="pn">Qualm AI</span><span class="pd">A chatbot that stress-tests your decisions with questions</span><span class="ps">In progress</span><span class="ic" aria-hidden="true"></span></button>
+    <div class="pb" id="p4"><div>
+     <p>A Socratic chatbot that challenges a decision with probing questions before you commit to it.</p>
+     <ul>
+      <li>Working demo built as a self-contained, rule-based HTML and JavaScript app.</li>
+      <li>Now being upgraded to a Node.js and Express backend using the Groq API for LLM-driven conversations.</li>
+     </ul>
+     <p class="stack">Stack: JavaScript, Node.js, Express, Groq API</p>
+     <p class="links"><a href="https://github.com/YOUR-USERNAME/qualm-ai">GitHub</a><a href="https://YOUR-DEMO-LINK/qualm">Live demo</a></p>
+    </div></div>
+   </div>
+  </div>
+ </section>
+
+ <section class="s" id="experience">
+  <h2>Experience</h2>
+  <div>
+   <div class="item">
+    <h3>Generative AI Intern, Karyoun Innovations Pvt. Ltd., Coimbatore</h3>
+    <div class="when"><span class="todo">[dates, remote or on-site]</span></div>
+    <ul><li><span class="todo">[What you built or learned, with the tools you used]</span></li><li><span class="todo">[A task you delivered and its result]</span></li></ul>
+   </div>
+   <div class="item">
+    <h3>Rural Internship, AICTE Rural Internship Programme and Unnat Bharat Abhiyan</h3>
+    <div class="when"><span class="todo">[dates]</span></div>
+    <ul><li>Visited Somangalam and Poonthandalam villages to study local digital literacy needs.</li><li>Designed and documented Minnoli, a Tamil-language learning platform.</li></ul>
+   </div>
+  </div>
+ </section>
+
+ <section class="s" id="skills">
+  <h2>Skills</h2>
+  <dl>
+   <dt>Languages</dt><dd>Java, JavaScript <span class="todo">[Python, SQL, C]</span></dd>
+   <dt>AI and ML</dt><dd>RAG, LLM APIs (Groq), prompt design, human-in-the-loop systems, deep learning concepts (autoencoders, GANs, VAEs)</dd>
+   <dt>Web</dt><dd>HTML, CSS, JavaScript, Node.js, Express, Three.js</dd>
+   <dt>IoT</dt><dd>NodeMCU ESP8266, MQ-2 sensor, Blynk, relays, solenoid valves</dd>
+   <dt>Automation</dt><dd>n8n, Telegram bots, Google Sheets, Git and GitHub, Notion</dd>
+   <dt>Computer science</dt><dd>Data structures and algorithms in Java, OOP, computer networks (TCP/IP, HTTP, DNS)</dd>
+  </dl>
+ </section>
+
+ <section class="s" id="education">
+  <h2>Education</h2>
+  <div>
+   <div class="item">
+    <h3>B.Tech, Artificial Intelligence &amp; Data Science</h3>
+    <div class="when">Sri Sairam Institute of Technology, Chennai (Anna University). <span class="todo">[years, CGPA]</span></div>
+    <p class="mute">Coursework includes deep learning, computer networks, time series analysis, supply chain and logistics, and ERP.</p>
+   </div>
+  </div>
+ </section>
+
+ <section class="s" id="credentials">
+  <h2>Certifications and achievements</h2>
+  <ul>
+   <li>NPTEL Industry 4.0 and IIoT coursework <span class="todo">[add certificate link if completed]</span></li>
+   <li>Minnoli Gate 1 evaluation: 10/10 for problem fit and research readiness</li>
+   <li><span class="todo">[Hackathons, symposiums, club roles, awards]</span></li>
+  </ul>
+ </section>
+
+ <section class="s contact" id="contact">
+  <h2>Contact</h2>
+  <div>
+   <p>I'm open to internships and campus placements. The quickest way to reach me is email.</p>
+   <p>
+    <a href="mailto:YOUR-EMAIL@example.com">Email</a>
+    <a href="https://www.linkedin.com/in/rahul-j-120413359" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://github.com/YOUR-USERNAME" target="_blank" rel="noopener">GitHub</a>
+   </p>
+  </div>
+ </section>
+</main>
+
+<footer>
+ <div class="wrap"><span>&copy; <span id="yr"></span> Rahul J. Chennai, India.</span><a href="#top">Back to top</a></div>
+</footer>
+
+<script>
+// Theme: follows the system setting, then remembers the visitor's choice.
+(function(){
+ var root=document.documentElement,btn=document.getElementById('theme'),saved=null;
+ try{saved=localStorage.getItem('theme')}catch(e){}
+ var dark=saved?saved==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;
+ function apply(){root.setAttribute('data-theme',dark?'dark':'light');btn.textContent=dark?'Light':'Dark'}
+ btn.addEventListener('click',function(){dark=!dark;apply();try{localStorage.setItem('theme',dark?'dark':'light')}catch(e){}});
+ apply();
+})();
+
+// Project rows expand and collapse.
+document.querySelectorAll('.ph').forEach(function(b){
+ b.addEventListener('click',function(){
+  var row=b.parentElement,open=row.classList.toggle('open');
+  b.setAttribute('aria-expanded',open);
+ });
+});
+
+// Links still containing YOUR- are hidden until you replace them.
+document.querySelectorAll('a[href*="YOUR-"]').forEach(function(a){a.hidden=true});
+
+document.getElementById('yr').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>

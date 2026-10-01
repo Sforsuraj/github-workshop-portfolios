@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Directory</title>
+    <style>
+        :root {
+            color-scheme: light;
+            font-family: "Trebuchet MS", Verdana, sans-serif;
+            background: #f3f6f2;
+            color: #20312b;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            padding: 48px 24px;
+            background: linear-gradient(135deg, #f3f6f2, #e5eee8);
+        }
+
+        main {
+            width: min(760px, 100%);
+            margin: 0 auto;
+        }
+
+        h1 {
+            margin: 0 0 8px;
+            font-size: 2rem;
+        }
+
+        p {
+            margin: 0 0 28px;
+            color: #52645b;
+        }
+
+        .portfolio-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 12px;
+        }
+
+        .portfolio-button {
+            display: flex;
+            min-height: 52px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 12px 16px;
+            border: 1px solid #c5d4ca;
+            border-radius: 6px;
+            background: #fff;
+            color: #20312b;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background-color 150ms ease, border-color 150ms ease, transform 150ms ease;
+        }
+
+        .portfolio-button::after {
+            content: "\2197";
+            color: #397557;
+        }
+
+        .portfolio-button:hover {
+            transform: translateY(-2px);
+            border-color: #397557;
+            background: #edf5ef;
+        }
+
+        .portfolio-button:focus-visible {
+            outline: 3px solid #397557;
+            outline-offset: 3px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Portfolio Directory</h1>
+        <p>Choose a portfolio to visit.</p>
+        <nav class="portfolio-list" aria-label="Portfolios">
+            <a class="portfolio-button" href="AKSHAYA11.html">AKSHAYA11</a>
+            <a class="portfolio-button" href="gokul1234.html">gokul1234</a>
+            <a class="portfolio-button" href="Hariharan.html">Hariharan</a>
+            <a class="portfolio-button" href="HariPrasath433.html">HariPrasath433</a>
+            <a class="portfolio-button" href="Jayasurya.html">Jayasurya</a>
+            <a class="portfolio-button" href="jeeva05.html">jeeva05</a>
+            <a class="portfolio-button" href="kich.html">kich</a>
+            <a class="portfolio-button" href="madhu.html">madhu</a>
+            <a class="portfolio-button" href="pazhanivelrajan2710.html">pazhanivelrajan2710</a>
+            <a class="portfolio-button" href="pooja340.html">pooja340</a>
+            <a class="portfolio-button" href="poojab.html">poojab</a>
+            <a class="portfolio-button" href="rahul.html">rahul</a>
+            <a class="portfolio-button" href="Rajasree.html">Rajasree</a>
+            <a class="portfolio-button" href="raksh2908.html">raksh2908</a>
+            <a class="portfolio-button" href="rakshiya20.html">rakshiya20</a>
+            <a class="portfolio-button" href="rupika123.html">rupika123</a>
+            <a class="portfolio-button" href="SACHIN08.html">SACHIN08</a>
+            <a class="portfolio-button" href="sahana2406.html">sahana2406</a>
+            <a class="portfolio-button" href="vicky123.html">vicky123</a>
+        </nav>
+    </main>
+</body>
+</html>

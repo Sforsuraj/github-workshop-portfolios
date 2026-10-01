@@ -1,0 +1,162 @@
+from pathlib import Path
+html = r'''<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#10110f">
+<meta name="description" content="S. Rupika — Mechanical & Automation Engineering student, maker, and creative thinker.">
+<title>S. Rupika — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Archivo+Black&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#10110f;--panel:#171915;--panel2:#1e211b;--ink:#f3f2e9;--muted:#a3a69b;--lime:#c8f169;--orange:#ff815c;--blue:#83bfff;--line:rgba(243,242,233,.15);--mono:"DM Mono",monospace;--sans:"DM Sans",sans-serif;--chunk:"Archivo Black","Space Grotesk",sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);overflow-x:hidden;cursor:none}a{color:inherit;text-decoration:none}button{font:inherit}.grain{position:fixed;inset:0;pointer-events:none;z-index:20;opacity:.045;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E")}
+.cursor{position:fixed;left:0;top:0;width:13px;height:13px;border:1px solid var(--lime);border-radius:50%;pointer-events:none;z-index:1000;transform:translate(-50%,-50%);mix-blend-mode:difference;transition:width .2s,height .2s,background .2s}.cursor.hover{width:42px;height:42px;background:rgba(200,241,105,.18)}
+nav{position:fixed;z-index:50;top:0;left:0;width:100%;height:78px;padding:0 5.5vw;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(180deg,rgba(16,17,15,.94),rgba(16,17,15,.35));backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}.brand{font:700 16px var(--mono);letter-spacing:-.06em}.brand b{color:var(--lime)}.navlinks{display:flex;gap:30px;align-items:center}.navlinks a{font:11px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);transition:color .2s}.navlinks a:hover{color:var(--lime)}.nav-cta{padding:11px 15px;border:1px solid var(--line);border-radius:99px;color:var(--ink)!important}.menu{display:none;background:none;color:var(--ink);border:1px solid var(--line);border-radius:50%;width:40px;height:40px}
+section{position:relative;padding:130px 8vw}.eyebrow{font:11px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--lime);display:flex;gap:10px;align-items:center}.eyebrow:before{content:"";width:24px;height:1px;background:currentColor}.big{font:clamp(3.5rem,10vw,9rem)/.88 var(--chunk);letter-spacing:-.075em;text-transform:uppercase;margin:24px 0}.outline{-webkit-text-stroke:1px var(--ink);color:transparent}.muted{color:var(--muted)}.scribble{position:absolute;pointer-events:none;overflow:visible}.scribble path{fill:none;stroke:var(--lime);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:var(--len,600);stroke-dashoffset:var(--len,600);transition:stroke-dashoffset 1.3s cubic-bezier(.65,0,.35,1)}.scribble.drawn path{stroke-dashoffset:0}.reveal{opacity:0;transform:translateY(36px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}.reveal.in{opacity:1;transform:translateY(0)}.delay1{transition-delay:.12s}.delay2{transition-delay:.24s}.delay3{transition-delay:.36s}
+.hero{min-height:100svh;padding:150px 8vw 70px;display:flex;flex-direction:column;justify-content:center;overflow:hidden}.hero-top{display:flex;align-items:center;gap:12px;font:11px var(--mono);letter-spacing:.1em;color:var(--muted);text-transform:uppercase}.status{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--lime);box-shadow:0 0 12px var(--lime)}.hero h1{font:clamp(4.2rem,14.5vw,13.5rem)/.79 var(--chunk);letter-spacing:-.09em;text-transform:uppercase;margin:30px 0 28px;max-width:1100px;position:relative;z-index:2}.hero h1 span{display:block}.hero h1 .second{color:var(--lime);padding-left:10vw}.hero-meta{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;max-width:1050px}.hero-meta p{font-size:clamp(15px,1.5vw,19px);line-height:1.55;max-width:420px;color:var(--muted);margin:0}.hero-meta strong{color:var(--ink);font-weight:600}.hero-actions{display:flex;gap:12px;margin-top:25px}.btn{display:inline-flex;align-items:center;gap:12px;padding:14px 19px;border:1px solid var(--line);border-radius:99px;font:11px var(--mono);letter-spacing:.06em;text-transform:uppercase;transition:background .25s,color .25s,border-color .25s,transform .25s}.btn.primary{background:var(--lime);color:#171915;border-color:var(--lime)}.btn:hover{transform:translateY(-4px);border-color:var(--lime)}.btn.primary:hover{background:var(--ink);color:var(--bg)}.hero-art{position:absolute;width:min(42vw,540px);right:7vw;top:24%;opacity:.92;pointer-events:none;transform:rotate(-8deg);animation:float 7s ease-in-out infinite;z-index:1}.hero-art svg{width:100%;filter:drop-shadow(0 25px 50px rgba(0,0,0,.3))}.hero-art .orbit{transform-origin:center;animation:spin 24s linear infinite}.hero-art .orbit2{transform-origin:center;animation:spin 18s linear infinite reverse}@keyframes float{50%{translate:0 -16px;rotate:3deg}}@keyframes spin{to{transform:rotate(360deg)}}.hero-scribble{width:46%;height:120px;left:7%;bottom:8%;z-index:0}.scroll-note{position:absolute;right:5.5vw;bottom:38px;font:10px var(--mono);color:var(--muted);writing-mode:vertical-rl;letter-spacing:.15em}
+.ticker{border-block:1px solid var(--line);overflow:hidden;background:var(--lime);color:#171915;transform:rotate(-1deg) scale(1.02);padding:13px 0;white-space:nowrap}.ticker-track{display:flex;width:max-content;animation:ticker 28s linear infinite;font:16px var(--chunk);letter-spacing:.04em;text-transform:uppercase}.ticker span{padding:0 22px}.ticker i{font-style:normal;color:#ff815c}@keyframes ticker{to{transform:translateX(-50%)}}
+.about{display:grid;grid-template-columns:1fr 1.05fr;gap:9vw;align-items:center}.about .big{font-size:clamp(4rem,9vw,8rem)}.about-copy{font-size:clamp(17px,1.7vw,23px);line-height:1.65;color:#c6c8bd;max-width:650px}.about-copy strong{color:var(--ink)}.about-note{margin-top:28px;font:11px var(--mono);color:var(--lime);letter-spacing:.08em;text-transform:uppercase}.about-art{position:absolute;width:220px;right:10%;bottom:-45px;opacity:.9}
+.skills{background:#151713;border-block:1px solid rgba(255,255,255,.06);overflow:hidden}.skills-head{display:flex;justify-content:space-between;align-items:end;gap:30px}.skills-head .big{font-size:clamp(4rem,10vw,9rem)}.skills-head p{max-width:270px;color:var(--muted);font-size:14px;line-height:1.6}.skill-label{font:10px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:42px 0 18px}.skill-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.skill-card{position:relative;min-height:130px;padding:22px;background:var(--panel2);border:1px solid rgba(255,255,255,.07);border-radius:14px;display:flex;align-items:center;gap:17px;overflow:hidden;transform-style:preserve-3d;transition:border-color .25s,background .25s,transform .25s}.skill-card:hover{border-color:var(--lime);background:#25291f}.skill-card:after{content:"↗";position:absolute;right:17px;top:15px;color:var(--muted);font:15px var(--mono);opacity:.6}.skill-icon{width:48px;height:48px;flex:0 0 48px;border-radius:13px;background:#292c25;display:grid;place-items:center;font:700 17px var(--mono);color:var(--lime);border:1px solid rgba(255,255,255,.08)}.skill-icon svg{width:30px;height:30px}.skill-card h3{font:clamp(15px,1.5vw,20px)/1.1 var(--chunk);letter-spacing:-.04em;text-transform:uppercase;margin:0 0 7px}.skill-card small{font:10px var(--mono);color:var(--muted);letter-spacing:.04em}.skill-card.creative{min-height:105px}.skill-card.creative .skill-icon{color:var(--orange)}.skill-grid.creative-grid{grid-template-columns:repeat(5,1fr)}.skill-grid.creative-grid .skill-card{display:block;padding:18px}.skill-grid.creative-grid .skill-icon{margin-bottom:14px}
+.project{overflow:hidden}.project-top{display:flex;justify-content:space-between;align-items:center;gap:20px}.project-top .big{font-size:clamp(4.5rem,12vw,11rem);margin-bottom:10px}.project-top .tag{font:10px var(--mono);color:var(--lime);border:1px solid rgba(200,241,105,.4);padding:10px 13px;border-radius:99px;white-space:nowrap}.project-showcase{margin-top:40px;display:grid;grid-template-columns:1.2fr .8fr;gap:5vw;align-items:center}.zbox-wrap{min-height:390px;position:relative;display:grid;place-items:center;background:radial-gradient(ellipse at center,rgba(200,241,105,.08),transparent 65%);border:1px solid var(--line);border-radius:18px;overflow:hidden;perspective:1000px}.zbox{width:min(75%,530px);transform-style:preserve-3d;animation:boxfloat 6s ease-in-out infinite;transition:transform .2s}.zbox svg{width:100%;height:auto;overflow:visible;filter:drop-shadow(0 25px 25px rgba(0,0,0,.4))}@keyframes boxfloat{50%{translate:0 -12px}}.box-orbit{position:absolute;width:75%;height:60%;border:1px dashed rgba(200,241,105,.25);border-radius:50%;transform:rotate(-20deg);animation:spin 32s linear infinite}.zbox-wrap:before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 40%,rgba(255,255,255,.04),transparent 60%);transform:translateX(-100%);animation:shine 7s ease-in-out infinite}@keyframes shine{45%,100%{transform:translateX(100%)}}.project-copy .eyebrow{margin-bottom:18px}.project-copy h3{font:clamp(27px,3vw,42px)/1 var(--chunk);letter-spacing:-.06em;text-transform:uppercase;margin:0 0 20px}.project-copy p{color:var(--muted);line-height:1.7;font-size:15px}.project-facts{display:flex;gap:10px;flex-wrap:wrap;margin:25px 0}.fact{border:1px solid var(--line);padding:9px 12px;border-radius:99px;font:10px var(--mono);color:#c8cabf;text-transform:uppercase}.project-foot{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:17px;margin-top:25px;font:10px var(--mono);letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+.contact{background:var(--lime);color:#171915;padding-bottom:70px;overflow:hidden}.contact .eyebrow{color:#171915}.contact .eyebrow:before{background:#171915}.contact .big{font-size:clamp(4rem,12vw,11rem);margin:25px 0 30px}.contact .outline{-webkit-text-stroke:1px #171915}.contact-inner{display:flex;justify-content:space-between;align-items:end;gap:30px}.contact-copy{max-width:400px;line-height:1.6;color:#34382d}.contact-links{display:flex;gap:10px;flex-wrap:wrap}.contact .btn{border-color:rgba(23,25,21,.35);color:#171915}.contact .btn:hover{background:#171915;color:var(--lime);border-color:#171915}.footer{padding:20px 8vw;display:flex;justify-content:space-between;gap:20px;font:10px var(--mono);color:var(--muted);letter-spacing:.08em;text-transform:uppercase}.footer b{color:var(--lime)}
+@media(max-width:850px){.hero-art{width:42vw;right:4vw;top:29%;opacity:.55}.hero h1{font-size:clamp(4rem,16vw,9rem)}.about{grid-template-columns:1fr;gap:20px}.about-art{width:150px;right:8%;bottom:-30px}.skill-grid{grid-template-columns:repeat(2,1fr)}.skill-grid.creative-grid{grid-template-columns:repeat(3,1fr)}.project-showcase{grid-template-columns:1fr}.zbox-wrap{min-height:330px}.project-copy{max-width:650px}}
+@media(max-width:600px){body{cursor:auto}nav{height:66px;padding:0 5vw}.navlinks{display:none;position:absolute;top:65px;left:0;right:0;background:rgba(16,17,15,.97);padding:22px 6vw 28px;flex-direction:column;align-items:flex-start;gap:20px;border-bottom:1px solid var(--line)}.navlinks.open{display:flex}.menu{display:grid;place-items:center}.hero{padding:130px 6vw 75px;min-height:92svh}.hero h1{font-size:clamp(3.7rem,18vw,7rem);margin:24px 0}.hero h1 .second{padding-left:3vw}.hero-art{width:58vw;right:-5vw;top:31%;opacity:.32}.hero-meta{display:block;position:relative;z-index:3}.hero-meta p{max-width:340px}.hero-actions{flex-wrap:wrap}.scroll-note{display:none}.hero-scribble{width:80%;left:3%;bottom:4%}section{padding:90px 6vw}.big{font-size:clamp(3.4rem,17vw,6rem)}.ticker-track{font-size:13px}.skills-head{display:block}.skills-head p{margin-top:0}.skill-grid{grid-template-columns:1fr 1fr;gap:9px}.skill-card{min-height:115px;padding:14px;gap:10px}.skill-icon{width:39px;height:39px;flex-basis:39px}.skill-card h3{font-size:14px}.skill-grid.creative-grid{grid-template-columns:repeat(2,1fr)}.skill-grid.creative-grid .skill-card{min-height:120px}.project-top{align-items:flex-start;flex-direction:column}.project-top .big{font-size:clamp(4rem,19vw,7rem)}.zbox-wrap{min-height:250px}.project-facts{gap:7px}.contact-inner{display:block}.contact-links{margin-top:25px}.contact .big{font-size:clamp(3.7rem,17vw,7rem)}.footer{padding:20px 6vw;flex-direction:column;gap:8px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="grain"></div><div class="cursor" aria-hidden="true"></div>
+<nav>
+  <a class="brand" href="#home">S.RUPIKA<span><b>©</b></span></a>
+  <button class="menu" aria-label="Toggle menu" aria-expanded="false">☰</button>
+  <div class="navlinks">
+    <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a class="nav-cta" href="#contact">Let's talk ↗</a>
+  </div>
+</nav>
+<main>
+<section class="hero" id="home">
+  <div class="hero-top reveal in"><span class="status"></span> MECHANICAL & AUTOMATION · CREATIVE MIND</div>
+  <h1 class="reveal in"><span>MAKING</span><span class="second">IDEAS.</span><span>REAL.</span></h1>
+  <div class="hero-meta reveal in delay1">
+    <p>Hey, I'm <strong>S. Rupika</strong> — an engineering student who loves designing, building, and turning imagination into something tangible.</p>
+    <div class="hero-actions"><a class="btn primary magnetic" href="#projects">Explore my work ↘</a><a class="btn magnetic" href="#about">A little about me ↗</a></div>
+  </div>
+  <div class="hero-art" aria-hidden="true">
+    <svg viewBox="0 0 500 500" fill="none">
+      <circle cx="250" cy="250" r="188" stroke="#c8f169" stroke-opacity=".25" stroke-dasharray="3 10"/>
+      <g class="orbit"><ellipse cx="250" cy="250" rx="225" ry="82" stroke="#c8f169" stroke-width="1.5" stroke-opacity=".7"/><circle cx="475" cy="250" r="6" fill="#ff815c"/></g>
+      <g class="orbit2"><ellipse cx="250" cy="250" rx="180" ry="105" stroke="#83bfff" stroke-width="1" stroke-opacity=".65"/><circle cx="70" cy="250" r="5" fill="#83bfff"/></g>
+      <path d="M155 185 250 130 345 185 250 240Z" fill="#25291f" stroke="#c8f169" stroke-width="2"/>
+      <path d="M155 185 250 240 250 350 155 295Z" fill="#1b1e18" stroke="#c8f169" stroke-width="2"/>
+      <path d="M250 240 345 185 345 295 250 350Z" fill="#343a2a" stroke="#c8f169" stroke-width="2"/>
+      <path d="M190 205 250 170 310 205 250 240Z" fill="#c8f169" fill-opacity=".16" stroke="#c8f169" stroke-opacity=".7"/>
+      <path d="M250 240V350M155 185 250 240 345 185" stroke="#c8f169" stroke-opacity=".5" stroke-dasharray="4 7"/>
+      <circle cx="250" cy="250" r="7" fill="#ff815c"/><path d="M250 130V85M345 185l35-20M155 185l-35-20" stroke="#c8f169" stroke-width="1.5" stroke-linecap="round"/>
+      <text x="250" y="395" text-anchor="middle" fill="#f3f2e9" font-family="DM Mono" font-size="11" letter-spacing="4">IDEA → OBJECT</text>
+    </svg>
+  </div>
+  <svg class="scribble hero-scribble" viewBox="0 0 600 120"><path d="M4 85 C90 28 140 110 220 68 S360 25 425 62 520 100 595 30"/></svg>
+  <div class="scroll-note">SCROLL TO EXPLORE ↓</div>
+</section>
+<div class="ticker"><div class="ticker-track"><span>DESIGN</span><i>✳</i><span>BUILD</span><i>✳</i><span>EXPERIMENT</span><i>✳</i><span>CREATE</span><i>✳</i><span>DESIGN</span><i>✳</i><span>BUILD</span><i>✳</i><span>EXPERIMENT</span><i>✳</i><span>CREATE</span><i>✳</i></div></div>
+<section class="about" id="about">
+  <div class="reveal"><div class="eyebrow">01 / THE PERSON BEHIND THE WORK</div><h2 class="big">A LITTLE<br><span class="outline">ABOUT</span><br>ME<span style="color:var(--lime)">.</span></h2></div>
+  <div class="reveal delay1"><p class="about-copy">I'm <strong>Rupika</strong>, a Mechanical & Automation Engineering student with a creative streak and a curious mind. I love <strong>designing and building things</strong>, whether that's exploring abstract art, making something with my own hands, or shaping an idea into a real object.</p><p class="about-copy">I also enjoy photo and video editing, where I get to experiment with visuals, motion, and storytelling. For me, creativity isn't limited to one medium. It's about imagining possibilities and finding ways to bring them to life.</p><div class="about-note">CURIOUS BY NATURE · CREATIVE BY CHOICE</div></div>
+  <svg class="scribble about-art" viewBox="0 0 240 130"><path d="M8 95 C45 10 70 130 118 55 S190 8 230 72 M20 110 C70 42 100 145 150 68"/></svg>
+</section>
+<section class="skills" id="skills">
+  <div class="skills-head reveal"><div><div class="eyebrow">02 / MY TOOLKIT</div><h2 class="big">SKILLS<span style="color:var(--lime)">.</span></h2></div><p>A mix of engineering tools, technical know-how, and creative skills I use to turn ideas into things.</p></div>
+  <div class="skill-label reveal">SOFTWARE & PROGRAMMING</div>
+  <div class="skill-grid">
+    <article class="skill-card reveal"><div class="skill-icon"><svg viewBox="0 0 40 40" fill="none"><path d="M8 29 18 8h5l10 21M12 23h17" stroke="#ff5b45" stroke-width="3" stroke-linecap="round"/><path d="M17 29h15" stroke="#ff5b45" stroke-width="2"/></svg></div><div><h3>AutoCAD</h3><small>INTERMEDIATE</small></div></article>
+    <article class="skill-card reveal delay1"><div class="skill-icon" style="color:#f45b45">SW</div><div><h3>SolidWorks</h3><small>BEGINNER</small></div></article>
+    <article class="skill-card reveal delay2"><div class="skill-icon"><svg viewBox="0 0 40 40"><path d="M20 5c-8 0-9 5-9 10v5h11v2H10c-5 0-6 4-6 8s2 6 6 6h5v-7c0-4 3-7 7-7h7c4 0 6-3 6-7s-2-10-15-10Z" fill="#3776ab"/><circle cx="15" cy="12" r="2" fill="#fff"/><path d="M20 35c8 0 9-5 9-10v-5H18v-2h12c5 0 6-4 6-8s-2-6-6-6h-5v7c0 4-3 7-7 7h-7c-4 0-6 3-6 7s2 10 15 10Z" fill="#ffd343"/><circle cx="25" cy="28" r="2" fill="#fff"/></svg></div><div><h3>Python</h3><small>INTERMEDIATE</small></div></article>
+    <article class="skill-card reveal"><div class="skill-icon" style="background:#17283e;color:#31a8ff">Ps</div><div><h3>Photoshop</h3><small>INTERMEDIATE</small></div></article>
+    <article class="skill-card reveal delay1"><div class="skill-icon" style="background:#2c183b;color:#d291ff">Pr</div><div><h3>Premiere Pro</h3><small>INTERMEDIATE</small></div></article>
+    <article class="skill-card reveal delay2"><div class="skill-icon" style="background:#2c183b;color:#d291ff">Ae</div><div><h3>After Effects</h3><small>INTERMEDIATE</small></div></article>
+  </div>
+  <div class="skill-label reveal">TECHNICAL</div>
+  <div class="skill-grid">
+    <article class="skill-card reveal"><div class="skill-icon">3D</div><div><h3>Rapid Prototyping</h3><small>3D PRINTING</small></div></article>
+    <article class="skill-card reveal delay1"><div class="skill-icon">↗</div><div><h3>3D Printing</h3><small>ADDITIVE MANUFACTURING</small></div></article>
+  </div>
+  <div class="skill-label reveal">CREATIVE</div>
+  <div class="skill-grid creative-grid">
+    <article class="skill-card creative reveal"><div class="skill-icon">✳</div><h3>Abstract Drawing</h3></article>
+    <article class="skill-card creative reveal delay1"><div class="skill-icon">✎</div><h3>Creative Design</h3></article>
+    <article class="skill-card creative reveal delay2"><div class="skill-icon">▧</div><h3>Photo Editing</h3></article>
+    <article class="skill-card creative reveal"><div class="skill-icon">▶</div><h3>Video Editing</h3></article>
+    <article class="skill-card creative reveal delay1"><div class="skill-icon">✂</div><h3>DIY & Handmade</h3></article>
+  </div>
+  <svg class="scribble" style="width:180px;height:90px;right:5%;top:10%" viewBox="0 0 180 90"><path d="M8 70Q80 0 170 45"/></svg>
+</section>
+<section class="project" id="projects">
+  <div class="project-top reveal"><div><div class="eyebrow">03 / SELECTED WORK</div><h2 class="big">PROJECT<span style="color:var(--lime)">.</span></h2></div><span class="tag">01 PROJECT · ONGOING</span></div>
+  <div class="project-showcase">
+    <div class="zbox-wrap reveal" data-tilt>
+      <div class="box-orbit"></div>
+      <div class="zbox">
+        <svg viewBox="0 0 640 430" role="img" aria-label="Illustration of a dual-temperature delivery box with separate hot and cold compartments">
+          <defs><linearGradient id="lid" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#454b3d"/><stop offset="1" stop-color="#242820"/></linearGradient><linearGradient id="front" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#34392e"/><stop offset="1" stop-color="#1b1e19"/></linearGradient><linearGradient id="side" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#292e25"/><stop offset="1" stop-color="#171915"/></linearGradient></defs>
+          <!-- floating callout labels -->
+          <g font-family="DM Mono,monospace" font-size="12" letter-spacing="1.5"><text x="64" y="82" fill="#ff815c">HOT ZONE</text><path d="M64 92H190L235 160" stroke="#ff815c" stroke-width="1.5" fill="none" stroke-dasharray="4 5"/><text x="485" y="82" fill="#83bfff">COLD ZONE</text><path d="M520 92H440L380 160" stroke="#83bfff" stroke-width="1.5" fill="none" stroke-dasharray="4 5"/></g>
+          <!-- lid -->
+          <path d="M130 165 310 78 510 158 326 250Z" fill="url(#lid)" stroke="#b8c1a7" stroke-opacity=".75" stroke-width="2"/>
+          <path d="M130 165 326 250 326 280 130 195Z" fill="#20231e" stroke="#b8c1a7" stroke-opacity=".45"/>
+          <path d="M326 250 510 158 510 190 326 280Z" fill="#2c3128" stroke="#b8c1a7" stroke-opacity=".45"/>
+          <path d="M130 165 310 78 510 158 326 250Z" fill="none" stroke="#d9e2c9" stroke-opacity=".5" stroke-dasharray="5 7"/>
+          <!-- body front + side -->
+          <path d="M130 195 326 280 326 370 130 282Z" fill="url(#front)" stroke="#9fa895" stroke-width="2"/>
+          <path d="M326 280 510 190 510 280 326 370Z" fill="url(#side)" stroke="#9fa895" stroke-width="2"/>
+          <!-- front seam -->
+          <path d="M229 238V326" stroke="#c8f169" stroke-opacity=".55" stroke-width="2" stroke-dasharray="4 5"/>
+          <path d="M130 282 326 370 510 280" stroke="#c8f169" stroke-opacity=".35" stroke-width="2"/>
+          <!-- hot panel -->
+          <path d="M154 219 222 249 222 311 154 281Z" fill="#ff815c" fill-opacity=".13" stroke="#ff815c" stroke-width="1.5"/>
+          <path d="M174 243q-10 13 0 23t0 22m17-13q-10 13 0 23t0 13" stroke="#ff815c" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <!-- cold panel -->
+          <path d="M350 292 482 228 482 267 350 331Z" fill="#83bfff" fill-opacity=".13" stroke="#83bfff" stroke-width="1.5"/>
+          <path d="M410 281v31m-14-24 28 16m0-16-28 16" stroke="#83bfff" stroke-width="2" stroke-linecap="round"/>
+          <!-- central partition hint -->
+          <path d="M326 280 326 370" stroke="#e9eee0" stroke-width="5" stroke-opacity=".45"/>
+          <!-- handles -->
+          <path d="M190 209q0-18 20-9l17 8q8 4 8 13v9" fill="none" stroke="#b8c1a7" stroke-width="7" stroke-linecap="round"/>
+          <path d="M398 250q0-16 18-25l15-7" fill="none" stroke="#b8c1a7" stroke-width="7" stroke-linecap="round"/>
+          <!-- feet -->
+          <path d="M148 289v15q0 8 10 12l16 7v-17m135 58v17l17 8 0-18m168-91v16l17-8v-17" stroke="#11130f" stroke-width="9" stroke-linecap="round" fill="none"/>
+          <!-- brand -->
+          <text x="275" y="340" fill="#f3f2e9" font-family="Archivo Black, sans-serif" font-size="17" letter-spacing="2" transform="rotate(24 275 340)">Z-TEMP</text>
+        </svg>
+      </div>
+      <div style="position:absolute;left:18px;bottom:16px;font:9px var(--mono);color:var(--muted);letter-spacing:.12em">CONCEPT VISUAL · NOT TO SCALE</div>
+    </div>
+    <div class="project-copy reveal delay1"><div class="eyebrow">CONCEPT / CAD DESIGN</div><h3>Hot stays hot.<br>Cold stays cold.</h3><p>A temperature-controlled delivery box concept designed with two separate compartments, divided by an insulated partition to help keep hot and cold items apart during transit.</p><p>The project is ongoing, with 3D CAD design forming part of the development process.</p><div class="project-facts"><span class="fact">Dual compartment</span><span class="fact">3D CAD design</span><span class="fact">Ongoing</span></div><div class="project-foot"><span>DESIGNED TO DELIVER</span><span>01 / 01</span></div></div>
+  </div>
+</section>
+<section class="contact" id="contact">
+  <div class="eyebrow reveal">04 / GET IN TOUCH</div>
+  <h2 class="big reveal">LET'S MAKE<br><span class="outline">SOMETHING</span><br>REAL.</h2>
+  <div class="contact-inner reveal delay1"><p class="contact-copy">Have an idea, a project, or just want to connect? My inbox is open for thoughtful conversations and creative collaborations.</p><div class="contact-links"><a class="btn magnetic" href="mailto:your.email@example.com">Email me ↗</a><a class="btn magnetic" href="#" aria-label="Add your LinkedIn profile">LinkedIn ↗</a><a class="btn magnetic" href="#" aria-label="Add your GitHub profile">GitHub ↗</a></div></div>
+</section>
+</main>
+<footer class="footer"><span>© 2026 S. RUPIKA</span><span>BUILT WITH <b>IDEAS</b> & A LITTLE MOTION</span><a href="#home">BACK TO TOP ↑</a></footer>
+<script>
+const cursor=document.querySelector('.cursor');
+if(matchMedia('(pointer:fine)').matches){document.addEventListener('mousemove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px'});document.querySelectorAll('a,button,.skill-card,.zbox-wrap').forEach(el=>{el.addEventListener('mouseenter',()=>cursor.classList.add('hover'));el.addEventListener('mouseleave',()=>cursor.classList.remove('hover'))})}else{cursor.style.display='none'}
+const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('in');const scribble=entry.target.querySelector?.('.scribble');if(scribble)scribble.classList.add('drawn')}}),{threshold:.14});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+const scribbleObserver=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('drawn')}),{threshold:.25});document.querySelectorAll('.scribble').forEach(el=>scribbleObserver.observe(el));
+document.querySelectorAll('[data-tilt]').forEach(card=>{card.addEventListener('mousemove',e=>{if(!matchMedia('(pointer:fine)').matches)return;const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;const box=card.querySelector('.zbox');box.style.transform=`rotateY(${x*12}deg) rotateX(${-y*9}deg) translateY(-4px)`});card.addEventListener('mouseleave',()=>{card.querySelector('.zbox').style.transform=''})});
+document.querySelectorAll('.skill-card').forEach(card=>{card.addEventListener('mousemove',e=>{if(!matchMedia('(pointer:fine)').matches)return;const r=card.getBoundingClientRect(),x=e.clientX-r.left-r.width/2,y=e.clientY-r.top-r.height/2;card.style.transform=`perspective(700px) rotateY(${x/r.width*8}deg) rotateX(${-y/r.height*8}deg) translateY(-3px)`});card.addEventListener('mouseleave',()=>card.style.transform='')});
+document.querySelectorAll('.magnetic').forEach(el=>{el.addEventListener('mousemove',e=>{if(!matchMedia('(pointer:fine)').matches)return;const r=el.getBoundingClientRect(),x=e.clientX-r.left-r.width/2,y=e.clientY-r.top-r.height/2;el.style.transform=`translate(${x*.12}px,${y*.18}px)`});el.addEventListener('mouseleave',()=>el.style.transform='')});
+const menu=document.querySelector('.menu'),links=document.querySelector('.navlinks');menu.addEventListener('click',()=>{const open=links.classList.toggle('open');menu.setAttribute('aria-expanded',open);menu.textContent=open?'×':'☰'});links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='☰'}));
+let ticking=false;window.addEventListener('scroll',()=>{if(ticking)return;ticking=true;requestAnimationFrame(()=>{const y=window.scrollY;document.querySelector('.hero-art').style.translate=`0 ${y*.11}px`;document.querySelector('.hero h1').style.translate=`0 ${y*.035}px`;ticking=false})},{passive:true});
+</script>
+</body>
+</html>'''
+path=Path('/mnt/data/index.html')
+path.write_text(html, encoding='utf-8')
+print(f"Created {path} ({path.stat().st_size:,} bytes)")

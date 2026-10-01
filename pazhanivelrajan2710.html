@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pazhanivelrajan S — AI & ML Engineering Portfolio</title>
+<meta name="description" content="Personal portfolio of Pazhanivelrajan S, an Artificial Intelligence and Machine Learning engineering student building AI, embedded and IoT projects.">
+<style>
+:root{
+ --bg:#07100f;--panel:#0b1715;--panel2:#101e1b;--ink:#e7eee9;--muted:#91a49b;
+ --line:#20332d;--green:#55e6a5;--amber:#e8a45b;--cyan:#61d8df;--white:#f5fbf7;
+ --shadow:0 20px 70px rgba(0,0,0,.38);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+ font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+ background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden
+}
+body:before{
+ content:"";position:fixed;inset:0;pointer-events:none;opacity:.28;z-index:-2;
+ background:
+ linear-gradient(rgba(85,230,165,.035) 1px,transparent 1px),
+ linear-gradient(90deg,rgba(85,230,165,.035) 1px,transparent 1px);
+ background-size:42px 42px
+}
+body:after{
+ content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.13;
+ background-image:radial-gradient(circle at 20% 20%,var(--green) 0 1px,transparent 1px);
+ background-size:17px 17px
+}
+a{color:inherit;text-decoration:none}
+.container{width:min(1180px,92%);margin:auto}
+nav{
+ position:sticky;top:0;z-index:20;background:rgba(7,16,15,.82);
+ backdrop-filter:blur(16px);border-bottom:1px solid var(--line)
+}
+.navin{height:74px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:950;letter-spacing:-.045em;font-size:1.1rem}.logo span{color:var(--green)}
+.links{display:flex;gap:24px;font-size:.82rem;font-weight:750;color:#afbeb7}
+.links a:hover{color:var(--green)}
+.menu{display:none;background:none;border:0;color:var(--green);font-size:1.5rem}
+.hero{min-height:calc(100vh - 74px);display:grid;grid-template-columns:1.08fr .92fr;align-items:center;gap:70px;padding:80px 0}
+.kicker{
+ display:inline-flex;align-items:center;gap:10px;color:var(--green);font-size:.72rem;font-weight:900;
+ text-transform:uppercase;letter-spacing:.18em;margin-bottom:20px
+}
+.kicker:before{content:"";width:28px;height:2px;background:var(--green)}
+h1{font-size:clamp(3.5rem,7.6vw,6.8rem);line-height:.9;letter-spacing:-.075em}
+.hero h1 em{font-style:normal;color:var(--green)}
+.lead{font-size:1.08rem;color:var(--muted);max-width:680px;margin:28px 0 30px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{padding:12px 18px;border:1px solid var(--line);font-weight:850;font-size:.86rem;background:var(--panel);transition:.2s}
+.btn.primary{background:var(--green);color:#06100d;border-color:var(--green)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(85,230,165,.12)}
+.hero-board{
+ position:relative;min-height:455px;border:1px solid var(--line);background:#081311;
+ box-shadow:var(--shadow);overflow:hidden;padding:26px
+}
+.hero-board:before{
+ content:"";position:absolute;inset:0;
+ background:
+ linear-gradient(90deg,transparent 49.8%,rgba(85,230,165,.09) 50%,transparent 50.2%),
+ linear-gradient(transparent 49.8%,rgba(85,230,165,.09) 50%,transparent 50.2%);
+ background-size:70px 70px
+}
+.board-label{font:700 .68rem ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--muted);position:relative}
+.board-core{
+ position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+ width:145px;height:145px;border:1px solid var(--green);background:#0d201b;
+ display:grid;place-items:center;box-shadow:0 0 45px rgba(85,230,165,.12)
+}
+.board-core:before,.board-core:after{content:"";position:absolute;background:var(--green)}
+.board-core:before{width:205px;height:1px;opacity:.45}.board-core:after{width:1px;height:205px;opacity:.45}
+.chip{font:950 1.25rem ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--green);text-align:center}
+.chip small{display:block;color:var(--muted);font-size:.55rem;letter-spacing:.12em;margin-top:6px}
+.pin{position:absolute;background:var(--amber);width:8px;height:8px;border-radius:50%;box-shadow:0 0 15px rgba(232,164,91,.55)}
+.p1{left:18%;top:25%}.p2{right:19%;top:31%}.p3{left:27%;bottom:23%}.p4{right:23%;bottom:20%}
+.trace{position:absolute;height:1px;background:linear-gradient(90deg,transparent,var(--green),transparent);opacity:.65;transform-origin:left}
+.t1{width:190px;left:20%;top:27%;transform:rotate(18deg)}.t2{width:160px;right:18%;top:34%;transform:rotate(150deg)}
+.t3{width:210px;left:24%;bottom:27%;transform:rotate(-18deg)}.t4{width:170px;right:21%;bottom:24%;transform:rotate(165deg)}
+.codebox{
+ position:absolute;left:25px;bottom:25px;border:1px solid var(--line);background:rgba(6,14,13,.86);
+ padding:13px 15px;font:600 .66rem/1.7 ui-monospace,SFMono-Regular,Consolas,monospace;color:#829890
+}
+.codebox b{color:var(--green)}.codebox i{color:var(--amber);font-style:normal}
+section{padding:105px 0}
+.sectionhead{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:45px}
+.eyebrow{font:900 .7rem ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.15em;color:var(--green);margin-bottom:9px}
+h2{font-size:clamp(2.2rem,5vw,4rem);line-height:1;letter-spacing:-.065em}
+.sectionhead p{max-width:500px;color:var(--muted)}
+.about{display:grid;grid-template-columns:.78fr 1.22fr;gap:55px}
+.aboutbox{border-left:2px solid var(--green);padding:4px 0 4px 25px}.aboutbox p{font-size:1.18rem;line-height:1.6}
+.factgrid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+.fact{background:var(--panel);padding:24px}.fact strong{display:block;font-size:1.45rem;letter-spacing:-.04em;color:var(--white)}.fact span{color:var(--muted);font-size:.82rem}
+.skills{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.skill{background:var(--panel);border:1px solid var(--line);padding:24px;min-height:185px;transition:.25s;position:relative;overflow:hidden}
+.skill:before{content:"//";position:absolute;right:16px;top:10px;color:rgba(85,230,165,.15);font:900 2.5rem monospace}
+.skill:hover{transform:translateY(-5px);border-color:var(--green);box-shadow:var(--shadow)}
+.skill h3{font-size:1rem;margin-bottom:17px}.skill p{color:var(--muted);font-size:.88rem}
+.projects{display:grid;grid-template-columns:1.3fr .7fr;gap:14px}
+.project{background:var(--panel);border:1px solid var(--line);padding:28px;min-height:255px;position:relative;overflow:hidden;transition:.25s}
+.project:hover{transform:translateY(-4px);border-color:#35554b;box-shadow:var(--shadow)}
+.project.featured{grid-row:span 2;min-height:525px;background:linear-gradient(145deg,#0d201b,#091310);border-color:#29473e}
+.project.featured:after{content:"AI + HW";position:absolute;right:-25px;bottom:35px;font:950 5rem ui-monospace,SFMono-Regular,Consolas,monospace;color:rgba(85,230,165,.035);transform:rotate(-90deg)}
+.tag{display:inline-block;font:800 .62rem ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.1em;padding:6px 8px;border:1px solid #35554b;color:var(--green);margin-bottom:21px}
+.project h3{font-size:2rem;letter-spacing:-.05em;margin-bottom:12px}.project:not(.featured) h3{font-size:1.4rem}
+.project p{color:#a9b7b0;max-width:650px}.project:not(.featured) p{color:var(--muted)}
+.tech{display:flex;flex-wrap:wrap;gap:7px;margin-top:24px}.tech span{font:700 .65rem ui-monospace,SFMono-Regular,Consolas,monospace;padding:6px 8px;background:rgba(85,230,165,.07);color:#9ae9c2;border:1px solid rgba(85,230,165,.12)}
+.projectnum{position:absolute;right:23px;top:20px;font:700 1.5rem Georgia,serif;color:#50635c}
+.experience{border-top:1px solid var(--line)}.role{display:grid;grid-template-columns:.35fr 1fr .45fr;gap:35px;padding:29px 0;border-bottom:1px solid var(--line)}
+.role .date{color:var(--muted);font:700 .72rem ui-monospace,SFMono-Regular,Consolas,monospace}.role h3{font-size:1.2rem}.role p{color:var(--muted);font-size:.88rem;margin-top:5px}.role .place{text-align:right;color:var(--green);font-weight:800;font-size:.83rem}
+.certgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.cert{background:var(--panel);border:1px solid var(--line);padding:21px;transition:.2s}.cert:hover{border-color:#35554b;transform:translateY(-3px)}.cert small{color:var(--amber);font:850 .63rem ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.1em;text-transform:uppercase}.cert h3{font-size:.98rem;margin:9px 0 5px}.cert p{color:var(--muted);font-size:.78rem}
+.cert.more{border-left:2px solid var(--cyan)}
+.contact{background:#0b1815;border:1px solid var(--line);padding:70px 7%;position:relative;overflow:hidden}
+.contact:before{content:"";position:absolute;width:500px;height:500px;border:1px solid rgba(85,230,165,.13);border-radius:50%;right:-160px;top:-210px}
+.contact h2{max-width:700px}.contact p{color:var(--muted);max-width:620px;margin:18px 0 27px}.contactlinks{display:flex;gap:18px;flex-wrap:wrap}.contactlinks a{color:#d5e0da;border-bottom:1px solid #3b5049;padding-bottom:4px}.contactlinks a:hover{color:var(--green);border-color:var(--green)}
+footer{padding:24px 0;color:#65756f;font:600 .7rem ui-monospace,SFMono-Regular,Consolas,monospace;display:flex;justify-content:space-between}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}.reveal.show{opacity:1;transform:none}
+@media(max-width:850px){
+ .links{display:none}.menu{display:block}.hero{grid-template-columns:1fr;padding-top:60px}.hero-board{min-height:360px}
+ .about,.projects{grid-template-columns:1fr}.project.featured{grid-row:auto;min-height:400px}.skills{grid-template-columns:1fr 1fr}.certgrid{grid-template-columns:1fr 1fr}
+ .role{grid-template-columns:1fr;gap:7px}.role .place{text-align:left}
+ .links.mobile{display:flex;position:absolute;left:0;right:0;top:74px;background:var(--bg);padding:18px 4%;flex-direction:column;gap:14px;border-bottom:1px solid var(--line)}
+}
+@media(max-width:540px){
+ h1{font-size:3.7rem}.skills,.certgrid{grid-template-columns:1fr}.sectionhead{display:block}.sectionhead p{margin-top:15px}
+ section{padding:75px 0}.hero{min-height:auto}.hero-board{min-height:310px}
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="container navin">
+    <a class="logo" href="#home">Pazhanivelrajan<span>.</span></a>
+    <div class="links">
+      <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a>
+      <a href="#experience">Experience</a><a href="#certifications">Certifications</a><a href="#contact">Contact</a>
+    </div>
+    <button class="menu" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<main>
+<section class="hero container" id="home">
+  <div class="reveal">
+    <div class="kicker">AI & ML Engineering Student</div>
+    <h1>Building ideas into <em>working things.</em></h1>
+    <p class="lead">I’m Pazhanivelrajan S — a B.E. Artificial Intelligence and Machine Learning student exploring AI, embedded systems, IoT, wearable technology and full-stack development.</p>
+    <div class="actions">
+      <a class="btn primary" href="#projects">Explore my work</a>
+      <a class="btn" href="Pazhanivelrajan_S_Resume_2_Page.docx">Download resume</a>
+    </div>
+  </div>
+  <div class="hero-art reveal">
+    <div class="hero-board">
+      <div class="board-label">PORTFOLIO_NODE // PAZHANIVELRAJAN_S</div>
+      <div class="trace t1"></div><div class="trace t2"></div><div class="trace t3"></div><div class="trace t4"></div>
+      <span class="pin p1"></span><span class="pin p2"></span><span class="pin p3"></span><span class="pin p4"></span>
+      <div class="board-core"><div class="chip">PS<br><small>AI / EMBEDDED</small></div></div>
+      <div class="codebox"><b>const</b> focus = [<i>"AI"</i>, <i>"IoT"</i>, <i>"HW"</i>];<br><b>status</b> = "building";</div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+<div class="container">
+  <div class="sectionhead reveal"><div><div class="eyebrow">01 — About</div><h2>A student who likes<br>to build.</h2></div><p>My work sits where software, artificial intelligence and physical hardware meet.</p></div>
+  <div class="about">
+    <div class="aboutbox reveal"><p>I enjoy taking an idea from a problem statement to a prototype — writing the code, connecting the sensors, testing the system and refining the result.</p></div>
+    <div class="factgrid reveal">
+      <div class="fact"><strong>B.E.</strong><span>Artificial Intelligence & Machine Learning</span></div>
+      <div class="fact"><strong>2028</strong><span>Expected graduation</span></div>
+      <div class="fact"><strong>7.0/10</strong><span>Current CGPA</span></div>
+      <div class="fact"><strong>2</strong><span>Industry internships</span></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="skills">
+<div class="container">
+ <div class="sectionhead reveal"><div><div class="eyebrow">02 — Skills</div><h2>What I work with.</h2></div></div>
+ <div class="skills">
+  <div class="skill reveal"><h3>AI / Machine Learning</h3><p>Machine Learning, Deep Learning, Generative AI, TinyML and data analytics.</p></div>
+  <div class="skill reveal"><h3>Embedded & IoT</h3><p>ESP32, ESP32-S3, Arduino, sensor interfacing, I²C, SPI, UART, Wi-Fi, Bluetooth and LoRa.</p></div>
+  <div class="skill reveal"><h3>Programming</h3><p>Python, C, SQL and HTML with a focus on practical project development.</p></div>
+  <div class="skill reveal"><h3>Engineering Tools</h3><p>Arduino IDE, VS Code, KiCad, Figma, PCB design and hardware prototyping.</p></div>
+ </div>
+</div>
+</section>
+
+<section id="projects">
+<div class="container">
+ <div class="sectionhead reveal"><div><div class="eyebrow">03 — Projects</div><h2>Selected work.</h2></div><p>Projects across AI, embedded systems, IoT and technology for real-world problems.</p></div>
+ <div class="projects">
+  <article class="project featured reveal"><span class="tag">Featured · Under development</span><div class="projectnum">01</div><h3>AetherAI</h3><p>An AI-enabled wearable concept for respiratory monitoring and emergency alerting. The system combines a wearable watch and chest patch with physiological and environmental sensing, with TinyML exploration for on-device intelligence.</p><div class="tech"><span>ESP32-S3</span><span>MAX30102</span><span>MPU6050</span><span>BME688</span><span>ADS1292R</span><span>TinyML</span></div></article>
+  <article class="project reveal"><div class="projectnum">02</div><span class="tag">AI + UAV</span><h3>UAV for Disaster Management</h3><p>A project exploring UAV technology for disaster-management applications.</p></article>
+  <article class="project reveal"><div class="projectnum">03</div><span class="tag">Ocean Technology</span><h3>AI-Powered Ocean Pollution Detection</h3><p>An AI-focused concept for detecting and supporting monitoring of ocean pollution.</p></article>
+  <article class="project reveal"><div class="projectnum">04</div><span class="tag">IoT + Agriculture</span><h3>Smart Agriculture Monitoring</h3><p>A monitoring system concept combining sensing, connectivity and intelligent agriculture support.</p></article>
+ </div>
+</div>
+</section>
+
+<section id="experience">
+<div class="container">
+ <div class="sectionhead reveal"><div><div class="eyebrow">04 — Experience</div><h2>Learning by doing.</h2></div></div>
+ <div class="experience reveal">
+  <div class="role"><div class="date">08 Jun — 07 Jul 2026</div><div><h3>Python Full Stack Intern</h3><p>Internship focused on Python Full Stack development.</p></div><div class="place">Wyntrix Innovations</div></div>
+  <div class="role"><div class="date">02 Jan — 24 Jan 2026</div><div><h3>Incubatee — App Development</h3><p>Worked as an incubatee on an App Development project.</p></div><div class="place">SSTIF</div></div>
+ </div>
+</div>
+</section>
+
+<section id="certifications">
+<div class="container">
+ <div class="sectionhead reveal"><div><div class="eyebrow">05 — Certifications & Activities</div><h2>Everything I’ve<br>been learning.</h2></div><p>A complete list of the certifications and professional activities you provided, grouped by organization.</p></div>
+ <div class="certgrid">
+  <div class="cert reveal"><small>NPTEL · 2026</small><h3>Python for Data Science</h3><p>67% · Elite</p></div>
+  <div class="cert reveal"><small>NPTEL · 2026</small><h3>Design and Analysis of Algorithms</h3><p>42%</p></div>
+  <div class="cert reveal"><small>NPTEL · 2025</small><h3>Developing Soft Skills and Personality</h3><p>70% · Elite</p></div>
+
+  <div class="cert reveal"><small>IEEE</small><h3>Introduction to Sustainable Development</h3><p>Certificate</p></div>
+  <div class="cert reveal"><small>IEEE</small><h3>Multidisciplinary Perspectives in Humanitarian and Sustainable Development Activities</h3><p>Certificate</p></div>
+  <div class="cert reveal"><small>IEEE</small><h3>Project Assessment, Monitoring and Evaluation</h3><p>Certificate</p></div>
+  <div class="cert reveal"><small>IEEE</small><h3>Community Engagement in Sustainable Development Projects</h3><p>Certificate</p></div>
+  <div class="cert reveal"><small>IEEE</small><h3>Humanitarian Technology for Sustainable Development</h3><p>Certificate</p></div>
+  <div class="cert reveal"><small>IEEE</small><h3>Sustainable Project Design</h3><p>Certificate</p></div>
+
+  <div class="cert reveal"><small>IBM SkillsBuild · 18 Oct 2025</small><h3>1M1B | Think Beyond: Shaping the Future with Intelligence</h3><p>Completion</p></div>
+  <div class="cert reveal"><small>IBM SkillsBuild · 19 Oct 2025</small><h3>Use Generative AI for Software Development</h3><p>Completion</p></div>
+  <div class="cert reveal"><small>IBM SkillsBuild · 19 Oct 2025</small><h3>Classifying Data Using IBM Granite</h3><p>Completion</p></div>
+  <div class="cert reveal"><small>IBM SkillsBuild · 19 Oct 2025</small><h3>Unleashing the Power of AI Agents</h3><p>Completion</p></div>
+  <div class="cert reveal"><small>IBM SkillsBuild · 19 Oct 2025</small><h3>Lab: Build an AI-Powered Multimodal RAG System with IBM Granite and Docling</h3><p>Completion</p></div>
+  <div class="cert reveal"><small>IBM SkillsBuild · 19 Oct 2025</small><h3>The Rise of Multiagent Systems</h3><p>Completion</p></div>
+
+  <div class="cert reveal"><small>Pearson</small><h3>Learning Deep Learning: Foundations with TensorFlow and PyTorch</h3><p>Learning credential</p></div>
+  <div class="cert reveal"><small>Pearson</small><h3>Learning Deep Learning: Building AI Applications</h3><p>Learning credential</p></div>
+  <div class="cert reveal"><small>Pearson</small><h3>Learning Deep Learning: Generative AI and Large Language Models</h3><p>Learning credential</p></div>
+  <div class="cert reveal"><small>IBM</small><h3>Develop Generative AI Applications: Get Started</h3><p>Learning credential</p></div>
+  <div class="cert reveal"><small>IBM</small><h3>Gen AI Foundational Models for NLP & Language Understanding</h3><p>Learning credential</p></div>
+  <div class="cert reveal"><small>Microsoft</small><h3>Analysis and Visualization of Data with Power BI</h3><p>Learning credential</p></div>
+
+  <div class="cert more reveal"><small>Professional Activity · ICARM 2026</small><h3>2nd International Conference on Automation, Robotics and Mechatronics</h3><p>Certificate of presentation</p></div>
+  <div class="cert more reveal"><small>Professional Activity · IEEE Extreme 19.0</small><h3>IEEE Extreme 19.0 Programming Competition</h3><p>Participation · 25 Oct 2025</p></div>
+ </div>
+</div>
+</section>
+
+<section id="education">
+<div class="container">
+ <div class="sectionhead reveal"><div><div class="eyebrow">06 — Education</div><h2>My academic path.</h2></div></div>
+ <div class="about">
+  <div class="aboutbox reveal"><p><strong>Sri Sairam Institute of Technology</strong><br>B.E. Artificial Intelligence and Machine Learning<br>Expected graduation: 2028</p></div>
+  <div class="factgrid reveal">
+   <div class="fact"><strong>AI & ML</strong><span>Specialization</span></div>
+   <div class="fact"><strong>2028</strong><span>Graduation</span></div>
+   <div class="fact"><strong>7.0/10</strong><span>CGPA</span></div>
+   <div class="fact"><strong>Projects</strong><span>Hands-on engineering focus</span></div>
+  </div>
+ </div>
+</div>
+</section>
+
+<section id="contact">
+<div class="container">
+ <div class="contact reveal">
+  <div class="eyebrow" style="color:#d59a79">07 — Contact</div>
+  <h2>Have an idea worth building?</h2>
+  <p>I’m open to learning, collaborating on technical projects and connecting with people working across AI, embedded systems and emerging technology.</p>
+  <div class="contactlinks">
+   <a href="mailto:pazhanivelrajanraj@gmail.com">pazhanivelrajanraj@gmail.com</a>
+   <a href="tel:+919787636467">+91 97876 36467</a>
+   <a href="https://www.linkedin.com/in/pazhanivelrajan-s-a1736b315" target="_blank">LinkedIn</a>
+   <a href="https://github.com/PazhanivelrajanS" target="_blank">GitHub</a>
+  </div>
+ </div>
+</div>
+</section>
+</main>
+
+<footer class="container"><span>© 2026 Pazhanivelrajan S</span><span>Designed & built as a personal portfolio</span></footer>
+
+<script>
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+document.querySelector('.menu').addEventListener('click',()=>document.querySelector('.links').classList.toggle('mobile'));
+</script>
+<style>
+@media(max-width:850px){.links.mobile{display:flex;position:absolute;left:0;right:0;top:76px;background:var(--paper);padding:18px 4%;flex-direction:column;gap:14px;border-bottom:1px solid var(--line)}}
+</style>
+</body>
+</html>
